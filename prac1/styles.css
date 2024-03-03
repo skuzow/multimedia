@@ -40,6 +40,12 @@
   border: 0;
 }
 
+#levelselectscreen p {
+  margin: 20px;
+  margin-left: 90px;
+  cursor: pointer;
+}
+
 /* Pantalla de carga */
 #loadingscreen {
   background: rgba(100, 100, 100, 0.3);

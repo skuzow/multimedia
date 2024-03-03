@@ -63,8 +63,7 @@ var game = {
     };
 
     // Ocultar todas las capas del juego y mostrar la pantalla de inicio
-    $('.gamelayer').hide();
-    $('#gamestartscreen').show();
+    this.showStartScreen();
 
     //Obtener el controlador para el lienzo de juego y el contexto
     game.canvas = document.getElementById('gamecanvas');
@@ -90,6 +89,10 @@ var game = {
       game.backgroundMusic.pause();
       $('#togglemusic')[0].src = 'images/icons/nomusic.png';
     }
+  },
+  showStartScreen: function () {
+    $('.gamelayer').hide();
+    $('#gamestartscreen').show();
   },
   showLevelScreen: function () {
     $('.gamelayer').hide();
@@ -634,12 +637,14 @@ var levels = {
 
   // Inicializar pantalla de selección de nivel
   init: function () {
-    var html = '';
-    for (var i = 0; i < levels.data.length; i++) {
-      var level = levels.data[i];
-      html += '<input type="button" value="' + (i + 1) + '">';
+    let htmlLevels = '';
+    for (let i = 0; i < levels.data.length; i++) {
+      htmlLevels += '<input type="button" value="' + (i + 1) + '">';
     }
-    $('#levelselectscreen').html(html);
+
+    const html = $('#levelselectscreen').html();
+    htmlLevels += html;
+    $('#levelselectscreen').html(htmlLevels);
 
     // Establecer los controladores de eventos de clic de botón para cargar el nivel
     $('#levelselectscreen input').click(function () {
