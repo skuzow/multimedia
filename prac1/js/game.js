@@ -399,7 +399,7 @@ var game = {
         ) {
           box2d.world.DestroyBody(body);
           if (entity.type == 'villain') {
-            game.score += entity.calories;
+            game.score += entity.experience;
             $('#score').html('Score: ' + game.score);
           }
           if (entity.breakSound) {
@@ -503,7 +503,7 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'burger', x: 520, y: 205, calories: 590 },
+        { type: 'villain', name: 'burger', x: 520, y: 205, experience: 590 },
 
         {
           type: 'block',
@@ -523,7 +523,7 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'fries', x: 620, y: 205, calories: 420 },
+        { type: 'villain', name: 'fries', x: 620, y: 205, experience: 420 },
 
         { type: 'hero', name: 'greenRobot', x: 80, y: 405 },
         { type: 'hero', name: 'cyanRobot', x: 140, y: 405 }
@@ -624,9 +624,9 @@ var levels = {
           height: 25
         },
 
-        { type: 'villain', name: 'burger', x: 715, y: 155, calories: 590 },
-        { type: 'villain', name: 'fries', x: 670, y: 405, calories: 420 },
-        { type: 'villain', name: 'sodacan', x: 765, y: 400, calories: 150 },
+        { type: 'villain', name: 'burger', x: 715, y: 155, experience: 590 },
+        { type: 'villain', name: 'fries', x: 670, y: 405, experience: 420 },
+        { type: 'villain', name: 'sodacan', x: 765, y: 400, experience: 150 },
 
         { type: 'hero', name: 'lightblueRobot', x: 30, y: 415 },
         { type: 'hero', name: 'redRobot', x: 80, y: 405 },
@@ -692,6 +692,7 @@ var levels = {
 
 var entities = {
   definitions: {
+    // level
     glass: {
       fullHealth: 100,
       density: 2.4,
@@ -709,6 +710,7 @@ var entities = {
       friction: 1.5,
       restitution: 0.2
     },
+    // villains
     burger: {
       shape: 'circle',
       fullHealth: 40,
@@ -735,6 +737,7 @@ var entities = {
       friction: 0.5,
       restitution: 0.6
     },
+    // heroes
     blueRobot: {
       shape: 'circle',
       radius: 30,
