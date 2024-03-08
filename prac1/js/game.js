@@ -532,7 +532,7 @@ var levels = {
     {
       // Segundo nivel
       foreground: 'purple-planet-foreground',
-      background: 'orange-planets-background',
+      background: 'purple-planets-background',
       entities: [
         {
           type: 'ground',
