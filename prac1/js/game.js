@@ -91,6 +91,11 @@ var game = {
       $('#togglemusic')[0].src = 'images/icons/nosound.png';
     }
   },
+  showStartScreen: function () {
+    if (!game.backgroundMusic.paused) game.backgroundMusic.pause();
+    $('.gamelayer').hide();
+    $('#gamestartscreen').show();
+  },
   showLevelScreen: function () {
     $('.gamelayer').hide();
     $('#levelselectscreen').show('slow');
