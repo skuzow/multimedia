@@ -525,8 +525,8 @@ var levels = {
         },
         { type: 'villain', name: 'fries', x: 620, y: 205, calories: 420 },
 
-        { type: 'hero', name: 'orange', x: 80, y: 405 },
-        { type: 'hero', name: 'apple', x: 140, y: 405 }
+        { type: 'hero', name: 'greenRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'cyanRobot', x: 140, y: 405 }
       ]
     },
     {
@@ -628,9 +628,9 @@ var levels = {
         { type: 'villain', name: 'fries', x: 670, y: 405, calories: 420 },
         { type: 'villain', name: 'sodacan', x: 765, y: 400, calories: 150 },
 
-        { type: 'hero', name: 'strawberry', x: 30, y: 415 },
-        { type: 'hero', name: 'orange', x: 80, y: 405 },
-        { type: 'hero', name: 'apple', x: 140, y: 405 }
+        { type: 'hero', name: 'lightblueRobot', x: 30, y: 415 },
+        { type: 'hero', name: 'redRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'orangeRobot', x: 140, y: 405 }
       ]
     }
   ],
@@ -735,24 +735,45 @@ var entities = {
       friction: 0.5,
       restitution: 0.6
     },
-    apple: {
+    blueRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    cyanRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    greenRobot: {
       shape: 'circle',
       radius: 25,
       density: 1.5,
       friction: 0.5,
       restitution: 0.4
     },
-    orange: {
+    lightblueRobot: {
       shape: 'circle',
       radius: 25,
       density: 1.5,
       friction: 0.5,
       restitution: 0.4
     },
-    strawberry: {
+    orangeRobot: {
       shape: 'circle',
-      radius: 15,
-      density: 2.0,
+      radius: 30,
+      density: 1.5,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    redRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
       friction: 0.5,
       restitution: 0.4
     }
