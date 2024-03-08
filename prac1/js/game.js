@@ -503,7 +503,7 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'burger', x: 520, y: 205, experience: 590 },
+        { type: 'villain', name: 'blueAlien', x: 520, y: 205, experience: 590 },
 
         {
           type: 'block',
@@ -523,7 +523,13 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'fries', x: 620, y: 205, experience: 420 },
+        {
+          type: 'villain',
+          name: 'pinkAlien',
+          x: 620,
+          y: 205,
+          experience: 420
+        },
 
         { type: 'hero', name: 'greenRobot', x: 80, y: 405 },
         { type: 'hero', name: 'cyanRobot', x: 140, y: 405 }
@@ -624,11 +630,29 @@ var levels = {
           height: 25
         },
 
-        { type: 'villain', name: 'burger', x: 715, y: 155, experience: 590 },
-        { type: 'villain', name: 'fries', x: 670, y: 405, experience: 420 },
-        { type: 'villain', name: 'sodacan', x: 765, y: 400, experience: 150 },
+        {
+          type: 'villain',
+          name: 'yellowAlien',
+          x: 715,
+          y: 155,
+          experience: 590
+        },
+        {
+          type: 'villain',
+          name: 'greenAlien',
+          x: 670,
+          y: 405,
+          experience: 420
+        },
+        {
+          type: 'villain',
+          name: 'purpleAlien',
+          x: 765,
+          y: 400,
+          experience: 150
+        },
 
-        { type: 'hero', name: 'lightblueRobot', x: 30, y: 415 },
+        { type: 'hero', name: 'blueRobot', x: 30, y: 415 },
         { type: 'hero', name: 'redRobot', x: 80, y: 405 },
         { type: 'hero', name: 'orangeRobot', x: 140, y: 405 }
       ]
@@ -711,28 +735,45 @@ var entities = {
       restitution: 0.2
     },
     // villains
-    burger: {
+    blueAlien: {
       shape: 'circle',
       fullHealth: 40,
-      radius: 25,
+      radius: 30,
       density: 1,
       friction: 0.5,
       restitution: 0.4
     },
-    sodacan: {
+    greenAlien: {
       shape: 'rectangle',
       fullHealth: 80,
-      width: 40,
-      height: 60,
+      width: 55,
+      height: 65,
       density: 1,
       friction: 0.5,
       restitution: 0.7
     },
-    fries: {
+    pinkAlien: {
       shape: 'rectangle',
       fullHealth: 50,
-      width: 40,
-      height: 50,
+      width: 50,
+      height: 60,
+      density: 1,
+      friction: 0.5,
+      restitution: 0.6
+    },
+    purpleAlien: {
+      shape: 'rectangle',
+      fullHealth: 60,
+      width: 50,
+      height: 60,
+      density: 1,
+      friction: 0.5,
+      restitution: 0.5
+    },
+    yellowAlien: {
+      shape: 'circle',
+      fullHealth: 70,
+      radius: 40,
       density: 1,
       friction: 0.5,
       restitution: 0.6
@@ -740,8 +781,8 @@ var entities = {
     // heroes
     blueRobot: {
       shape: 'circle',
-      radius: 30,
-      density: 1.5,
+      radius: 25,
+      density: 2.0,
       friction: 0.5,
       restitution: 0.4
     },
@@ -757,13 +798,6 @@ var entities = {
       radius: 25,
       density: 1.5,
       friction: 2.0,
-      restitution: 0.4
-    },
-    lightblueRobot: {
-      shape: 'circle',
-      radius: 25,
-      density: 2.0,
-      friction: 0.5,
       restitution: 0.4
     },
     orangeRobot: {
