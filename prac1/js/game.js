@@ -463,8 +463,8 @@ var levels = {
   data: [
     {
       // Primer nivel
-      foreground: 'desert-foreground',
-      background: 'clouds-background',
+      foreground: 'blue-planet-foreground',
+      background: 'blue-planets-background',
       entities: [
         {
           type: 'ground',
@@ -531,8 +531,8 @@ var levels = {
     },
     {
       // Segundo nivel
-      foreground: 'desert-foreground',
-      background: 'clouds-background',
+      foreground: 'purple-planet-foreground',
+      background: 'orange-planets-background',
       entities: [
         {
           type: 'ground',
