@@ -753,13 +753,13 @@ var entities = {
       shape: 'circle',
       radius: 25,
       density: 1.5,
-      friction: 0.5,
+      friction: 2.0,
       restitution: 0.4
     },
     lightblueRobot: {
       shape: 'circle',
       radius: 25,
-      density: 1.5,
+      density: 2.0,
       friction: 0.5,
       restitution: 0.4
     },
