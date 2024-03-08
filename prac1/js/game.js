@@ -412,7 +412,7 @@ var game = {
     }
   },
   drawSlingshotBand: function () {
-    game.context.strokeStyle = 'rgb(68,31,11)'; // Color marrón oscuro
+    game.context.strokeStyle = 'rgb(90,90,90)'; // Color gris
     game.context.lineWidth = 6; // Dibuja una línea gruesa
 
     // Utilizar el ángulo y el radio del héroe para calcular el centro del héroe
@@ -431,7 +431,7 @@ var game = {
     // Iniciar la línea desde la parte superior de la honda (la parte trasera)
     game.context.moveTo(
       game.slingshotX + 50 - game.offsetLeft,
-      game.slingshotY + 25
+      game.slingshotY + 30
     );
 
     // Dibuja línea al centro del héroe
