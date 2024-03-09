@@ -86,9 +86,11 @@ var game = {
     if (game.backgroundMusic.paused) {
       game.backgroundMusic.play();
       toggleImage.src = 'images/icons/sound.png';
+      localStorage.setItem('mute', false);
     } else {
       game.backgroundMusic.pause();
       $('#togglemusic')[0].src = 'images/icons/nosound.png';
+      localStorage.setItem('mute', true);
     }
   },
   showStartScreen: function () {
@@ -120,8 +122,10 @@ var game = {
     // Display the game canvas and score
     $('#gamecanvas').show();
     $('#scorescreen').show();
-
-    game.startBackgroundMusic();
+    if (localStorage.getItem('mute') === 'false') {
+      game.startBackgroundMusic();
+      document.getElementById('togglemusic').src = 'images/icons/sound.png';
+    }
 
     game.mode = 'intro';
     game.offsetLeft = 0;
@@ -414,49 +418,51 @@ var game = {
     }
   },
   drawSlingshotBand: function () {
-    game.context.strokeStyle = 'rgb(68,31,11)'; // Color marrón oscuro
-    game.context.lineWidth = 6; // Dibuja una línea gruesa
+    if (game.currentHero) {
+      game.context.strokeStyle = 'rgb(68,31,11)'; // Color marrón oscuro
+      game.context.lineWidth = 6; // Dibuja una línea gruesa
 
-    // Utilizar el ángulo y el radio del héroe para calcular el centro del héroe
-    var radius = game.currentHero.GetUserData().radius;
-    var heroX = game.currentHero.GetPosition().x * box2d.scale;
-    var heroY = game.currentHero.GetPosition().y * box2d.scale;
-    var angle = Math.atan2(
-      game.slingshotY + 25 - heroY,
-      game.slingshotX + 50 - heroX
-    );
+      // Utilizar el ángulo y el radio del héroe para calcular el centro del héroe
+      var radius = game.currentHero.GetUserData().radius;
+      var heroX = game.currentHero.GetPosition().x * box2d.scale;
+      var heroY = game.currentHero.GetPosition().y * box2d.scale;
+      var angle = Math.atan2(
+        game.slingshotY + 25 - heroY,
+        game.slingshotX + 50 - heroX
+      );
 
-    var heroFarEdgeX = heroX - radius * Math.cos(angle);
-    var heroFarEdgeY = heroY - radius * Math.sin(angle);
+      var heroFarEdgeX = heroX - radius * Math.cos(angle);
+      var heroFarEdgeY = heroY - radius * Math.sin(angle);
 
-    game.context.beginPath();
-    // Iniciar la línea desde la parte superior de la honda (la parte trasera)
-    game.context.moveTo(
-      game.slingshotX + 50 - game.offsetLeft,
-      game.slingshotY + 25
-    );
+      game.context.beginPath();
+      // Iniciar la línea desde la parte superior de la honda (la parte trasera)
+      game.context.moveTo(
+        game.slingshotX + 50 - game.offsetLeft,
+        game.slingshotY + 25
+      );
 
-    // Dibuja línea al centro del héroe
-    game.context.lineTo(heroX - game.offsetLeft, heroY);
-    game.context.stroke();
+      // Dibuja línea al centro del héroe
+      game.context.lineTo(heroX - game.offsetLeft, heroY);
+      game.context.stroke();
 
-    // Dibuja el héroe en la banda posterior
-    entities.draw(
-      game.currentHero.GetUserData(),
-      game.currentHero.GetPosition(),
-      game.currentHero.GetAngle()
-    );
+      // Dibuja el héroe en la banda posterior
+      entities.draw(
+        game.currentHero.GetUserData(),
+        game.currentHero.GetPosition(),
+        game.currentHero.GetAngle()
+      );
 
-    game.context.beginPath();
-    // Mover al borde del héroe más alejado de la parte superior de la honda
-    game.context.moveTo(heroFarEdgeX - game.offsetLeft, heroFarEdgeY);
+      game.context.beginPath();
+      // Mover al borde del héroe más alejado de la parte superior de la honda
+      game.context.moveTo(heroFarEdgeX - game.offsetLeft, heroFarEdgeY);
 
-    // Dibujar línea de regreso a la parte superior de la honda (el lado frontal)
-    game.context.lineTo(
-      game.slingshotX - game.offsetLeft + 10,
-      game.slingshotY + 30
-    );
-    game.context.stroke();
+      // Dibujar línea de regreso a la parte superior de la honda (el lado frontal)
+      game.context.lineTo(
+        game.slingshotX - game.offsetLeft + 10,
+        game.slingshotY + 30
+      );
+      game.context.stroke();
+    }
   }
 };
 
