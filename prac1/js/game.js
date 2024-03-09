@@ -84,11 +84,11 @@ var game = {
     var toggleImage = $('#togglemusic')[0];
     if (game.backgroundMusic.paused) {
       game.backgroundMusic.play();
-      toggleImage.src = 'images/icons/sound.png';
+      toggleImage.src = 'images/icons/music.png';
       localStorage.setItem('mute', false);
     } else {
       game.backgroundMusic.pause();
-      $('#togglemusic')[0].src = 'images/icons/nosound.png';
+      $('#togglemusic')[0].src = 'images/icons/nomusic.png';
       localStorage.setItem('mute', true);
     }
   },
@@ -123,7 +123,7 @@ var game = {
     $('#scorescreen').show();
     if (localStorage.getItem('mute') === 'false') {
       game.startBackgroundMusic();
-      document.getElementById('togglemusic').src = 'images/icons/sound.png';
+      document.getElementById('togglemusic').src = 'images/icons/music.png';
     }
 
     game.mode = 'intro';
