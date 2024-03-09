@@ -51,9 +51,9 @@ var game = {
 
     // Cargar todos los efectos de sonido y música de fondo
 
-    //"Kindergarten" by Gurdonark
-    //http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
-    game.backgroundMusic = loader.loadSound('audio/gurdonark-kindergarten');
+    // "Password Infinity" by Evgeny_Bardyuzha
+    // https://pixabay.com/music/beats-password-infinity-123276 is free for use
+    game.backgroundMusic = loader.loadSound('audio/password-infinity');
 
     game.slingshotReleasedSound = loader.loadSound('audio/released');
     game.bounceSound = loader.loadSound('audio/bounce');
@@ -63,8 +63,7 @@ var game = {
     };
 
     // Ocultar todas las capas del juego y mostrar la pantalla de inicio
-    $('.gamelayer').hide();
-    $('#gamestartscreen').show();
+    this.showStartScreen();
 
     //Obtener el controlador para el lienzo de juego y el contexto
     game.canvas = document.getElementById('gamecanvas');
@@ -73,11 +72,11 @@ var game = {
   startBackgroundMusic: function () {
     var toggleImage = $('#togglemusic')[0];
     game.backgroundMusic.play();
-    toggleImage.src = 'images/icons/sound.png';
+    toggleImage.src = 'images/icons/music.png';
   },
   stopBackgroundMusic: function () {
     var toggleImage = $('#togglemusic')[0];
-    toggleImage.src = 'images/icons/nosound.png';
+    toggleImage.src = 'images/icons/nomusic.png';
     game.backgroundMusic.pause();
     game.backgroundMusic.currentTime = 0; // Ir al comienzo de la canción
   },
@@ -405,7 +404,7 @@ var game = {
         ) {
           box2d.world.DestroyBody(body);
           if (entity.type == 'villain') {
-            game.score += entity.calories;
+            game.score += entity.experience;
             $('#score').html('Score: ' + game.score);
           }
           if (entity.breakSound) {
@@ -469,10 +468,10 @@ var game = {
 var levels = {
   // Datos de nivel
   data: [
+    // first level
     {
-      // Primer nivel
-      foreground: 'desert-foreground',
-      background: 'clouds-background',
+      foreground: 'blue-planet-foreground',
+      background: 'blue-planets-background',
       entities: [
         {
           type: 'ground',
@@ -511,7 +510,7 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'burger', x: 520, y: 205, calories: 590 },
+        { type: 'villain', name: 'blueAlien', x: 520, y: 200, experience: 590 },
 
         {
           type: 'block',
@@ -531,16 +530,22 @@ var levels = {
           width: 100,
           height: 25
         },
-        { type: 'villain', name: 'fries', x: 620, y: 205, calories: 420 },
+        {
+          type: 'villain',
+          name: 'pinkAlien',
+          x: 620,
+          y: 200,
+          experience: 420
+        },
 
-        { type: 'hero', name: 'orange', x: 80, y: 405 },
-        { type: 'hero', name: 'apple', x: 140, y: 405 }
+        { type: 'hero', name: 'greenRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'cyanRobot', x: 140, y: 405 }
       ]
     },
+    // second level
     {
-      // Segundo nivel
-      foreground: 'desert-foreground',
-      background: 'clouds-background',
+      foreground: 'purple-planet-foreground',
+      background: 'purple-planets-background',
       entities: [
         {
           type: 'ground',
@@ -632,25 +637,309 @@ var levels = {
           height: 25
         },
 
-        { type: 'villain', name: 'burger', x: 715, y: 155, calories: 590 },
-        { type: 'villain', name: 'fries', x: 670, y: 405, calories: 420 },
-        { type: 'villain', name: 'sodacan', x: 765, y: 400, calories: 150 },
+        {
+          type: 'villain',
+          name: 'yellowAlien',
+          x: 715,
+          y: 140,
+          experience: 590
+        },
+        {
+          type: 'villain',
+          name: 'greenAlien',
+          x: 670,
+          y: 397,
+          experience: 420
+        },
+        {
+          type: 'villain',
+          name: 'purpleAlien',
+          x: 765,
+          y: 400,
+          experience: 150
+        },
 
-        { type: 'hero', name: 'strawberry', x: 30, y: 415 },
-        { type: 'hero', name: 'orange', x: 80, y: 405 },
-        { type: 'hero', name: 'apple', x: 140, y: 405 }
+        { type: 'hero', name: 'blueRobot', x: 30, y: 415 },
+        { type: 'hero', name: 'redRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'orangeRobot', x: 140, y: 405 }
+      ]
+    },
+    // third level
+    {
+      foreground: 'blue-planet-foreground',
+      background: 'purple-planets-background',
+      entities: [
+        {
+          type: 'ground',
+          name: 'dirt',
+          x: 500,
+          y: 440,
+          width: 1000,
+          height: 20,
+          isStatic: true
+        },
+        {
+          type: 'ground',
+          name: 'wood',
+          x: 185,
+          y: 390,
+          width: 30,
+          height: 80,
+          isStatic: true
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 620,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 720,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 672,
+          y: 317.5,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'pinkAlien',
+          x: 670,
+          y: 275,
+          experience: 460
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 820,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 820,
+          y: 280,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'greenAlien',
+          x: 820,
+          y: 197,
+          experience: 460
+        },
+
+        { type: 'hero', name: 'orangeRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'greenRobot', x: 140, y: 405 }
+      ]
+    },
+    // fourth level
+    {
+      foreground: 'purple-planet-foreground',
+      background: 'blue-planets-background',
+      entities: [
+        {
+          type: 'ground',
+          name: 'dirt',
+          x: 500,
+          y: 440,
+          width: 1000,
+          height: 20,
+          isStatic: true
+        },
+        {
+          type: 'ground',
+          name: 'wood',
+          x: 185,
+          y: 390,
+          width: 30,
+          height: 80,
+          isStatic: true
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 590,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 690,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 790,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 890,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 637,
+          y: 317.5,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 740,
+          y: 317.5,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 843,
+          y: 317.5,
+          width: 100,
+          height: 25
+        },
+
+        {
+          type: 'block',
+          name: 'glass',
+          x: 635,
+          y: 255,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'purpleAlien',
+          x: 687,
+          y: 275,
+          experience: 800
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 740,
+          y: 255,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'blueAlien',
+          x: 790,
+          y: 276,
+          experience: 800
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 838,
+          y: 255,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 685,
+          y: 193,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'wood',
+          x: 790,
+          y: 193,
+          width: 100,
+          height: 25
+        },
+
+        {
+          type: 'block',
+          name: 'glass',
+          x: 670,
+          y: 130,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'yellowAlien',
+          x: 740,
+          y: 140,
+          experience: 800
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 807,
+          y: 130,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+
+        { type: 'hero', name: 'blueRobot', x: 30, y: 415 },
+        { type: 'hero', name: 'cyanRobot', x: 80, y: 405 },
+        { type: 'hero', name: 'redRobot', x: 140, y: 405 }
       ]
     }
   ],
 
   // Inicializar pantalla de selección de nivel
   init: function () {
-    var html = '';
-    for (var i = 0; i < levels.data.length; i++) {
-      var level = levels.data[i];
-      html += '<input type="button" value="' + (i + 1) + '">';
+    let htmlLevels = '';
+    for (let i = 0; i < levels.data.length; i++) {
+      htmlLevels += '<input type="button" value="' + (i + 1) + '">';
     }
-    $('#levelselectscreen').html(html);
+
+    const html = $('#levelselectscreen').html();
+    htmlLevels += html;
+    $('#levelselectscreen').html(htmlLevels);
 
     // Establecer los controladores de eventos de clic de botón para cargar el nivel
     $('#levelselectscreen input').click(function () {
@@ -698,6 +987,7 @@ var levels = {
 
 var entities = {
   definitions: {
+    // level
     glass: {
       fullHealth: 100,
       density: 2.4,
@@ -715,50 +1005,83 @@ var entities = {
       friction: 1.5,
       restitution: 0.2
     },
-    burger: {
+    // villains
+    blueAlien: {
       shape: 'circle',
       fullHealth: 40,
-      radius: 25,
+      radius: 30,
       density: 1,
       friction: 0.5,
       restitution: 0.4
     },
-    sodacan: {
+    greenAlien: {
       shape: 'rectangle',
       fullHealth: 80,
-      width: 40,
-      height: 60,
+      width: 55,
+      height: 65,
       density: 1,
       friction: 0.5,
       restitution: 0.7
     },
-    fries: {
+    pinkAlien: {
       shape: 'rectangle',
       fullHealth: 50,
-      width: 40,
-      height: 50,
+      width: 50,
+      height: 60,
       density: 1,
       friction: 0.5,
       restitution: 0.6
     },
-    apple: {
+    purpleAlien: {
+      shape: 'rectangle',
+      fullHealth: 60,
+      width: 50,
+      height: 60,
+      density: 1,
+      friction: 0.5,
+      restitution: 0.5
+    },
+    yellowAlien: {
+      shape: 'circle',
+      fullHealth: 70,
+      radius: 40,
+      density: 1,
+      friction: 0.5,
+      restitution: 0.6
+    },
+    // heroes
+    blueRobot: {
       shape: 'circle',
       radius: 25,
-      density: 1.5,
-      friction: 0.5,
-      restitution: 0.4
-    },
-    orange: {
-      shape: 'circle',
-      radius: 25,
-      density: 1.5,
-      friction: 0.5,
-      restitution: 0.4
-    },
-    strawberry: {
-      shape: 'circle',
-      radius: 15,
       density: 2.0,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    cyanRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    greenRobot: {
+      shape: 'circle',
+      radius: 25,
+      density: 1.5,
+      friction: 2.0,
+      restitution: 0.4
+    },
+    orangeRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
+      friction: 0.5,
+      restitution: 0.4
+    },
+    redRobot: {
+      shape: 'circle',
+      radius: 30,
+      density: 1.5,
       friction: 0.5,
       restitution: 0.4
     }
