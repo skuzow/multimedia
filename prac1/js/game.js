@@ -51,9 +51,9 @@ var game = {
 
     // Cargar todos los efectos de sonido y música de fondo
 
-    //"Kindergarten" by Gurdonark
-    //http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
-    game.backgroundMusic = loader.loadSound('audio/gurdonark-kindergarten');
+    // "Password Infinity" by Evgeny_Bardyuzha
+    // https://pixabay.com/music/beats-password-infinity-123276 is free for use
+    game.backgroundMusic = loader.loadSound('audio/password-infinity');
 
     game.slingshotReleasedSound = loader.loadSound('audio/released');
     game.bounceSound = loader.loadSound('audio/bounce');
