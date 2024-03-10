@@ -42,6 +42,7 @@ $(window).load(function () {
 });
 
 var game = {
+  musicIndex: localStorage.getItem('musicIndex'),
   // Inicialización de objetos, precarga de elementos y pantalla de inicio
   init: function () {
     // Inicialización de objetos
@@ -51,10 +52,9 @@ var game = {
 
     // Cargar todos los efectos de sonido y música de fondo
 
-    // "Password Infinity" by Evgeny_Bardyuzha
-    // https://pixabay.com/music/beats-password-infinity-123276 is free for use
-    game.backgroundMusic = loader.loadSound('audio/password-infinity');
-    if (localStorage.getItem('mute') === 'false') game.startBackgroundMusic();
+    if (!this.musicIndex) this.musicIndex = 0;
+    
+    this.loadMusic();
 
     game.slingshotReleasedSound = loader.loadSound('audio/released');
     game.bounceSound = loader.loadSound('audio/bounce');
@@ -126,6 +126,20 @@ var game = {
     window.cancelAnimationFrame(game.animationFrame);
     game.lastUpdateTime = undefined;
     levels.load(game.currentLevel.number + 1);
+  },
+  changeMusic: function () {
+    this.musicIndex = (this.musicIndex + 1) % backgroundMusics.length;
+    localStorage.setItem('musicIndex', this.musicIndex);
+    this.loadMusic();
+  },
+  loadMusic: function () {
+    if (this.backgroundMusic) {
+      this.backgroundMusic.pause();
+    }
+    game.backgroundMusic = loader.loadSound(
+      'audio/' + backgroundMusics[this.musicIndex]
+    );
+    if (localStorage.getItem('mute') === 'false') game.startBackgroundMusic();
   },
   // Modo Juego
   mode: 'intro',
@@ -476,6 +490,8 @@ var game = {
     }
   }
 };
+
+const backgroundMusics = ['password-infinity', 'battle-time'];
 
 var levels = {
   // Datos de nivel
