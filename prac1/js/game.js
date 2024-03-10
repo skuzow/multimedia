@@ -54,6 +54,7 @@ var game = {
     // "Password Infinity" by Evgeny_Bardyuzha
     // https://pixabay.com/music/beats-password-infinity-123276 is free for use
     game.backgroundMusic = loader.loadSound('audio/password-infinity');
+    if (localStorage.getItem('mute') === 'false') game.startBackgroundMusic();
 
     game.slingshotReleasedSound = loader.loadSound('audio/released');
     game.bounceSound = loader.loadSound('audio/bounce');
@@ -70,37 +71,51 @@ var game = {
     game.context = game.canvas.getContext('2d');
   },
   startBackgroundMusic: function () {
-    var toggleImage = $('#togglemusic')[0];
-    game.backgroundMusic.play();
-    toggleImage.src = 'images/icons/music.png';
+    localStorage.setItem('mute', false);
+    game.backgroundMusic.currentTime = 0;
+    const promise = game.backgroundMusic.play();
+    if (promise !== undefined) {
+      promise
+        .then((_) => {
+          // Autoplay started!
+        })
+        .catch((error) => {
+          // Autoplay was prevented.
+          alert('Music may not play due to sound permission, or lack thereof');
+        });
+    }
+    const toggleImage = $('.togglemusic');
+    toggleImage.each(function () {
+      $(this).attr('src', 'images/icons/music.png');
+    });
   },
   stopBackgroundMusic: function () {
-    var toggleImage = $('#togglemusic')[0];
-    toggleImage.src = 'images/icons/nomusic.png';
+    localStorage.setItem('mute', true);
     game.backgroundMusic.pause();
-    game.backgroundMusic.currentTime = 0; // Ir al comienzo de la canción
+    const toggleImage = $('.togglemusic');
+    toggleImage.each(function () {
+      $(this).attr('src', 'images/icons/nomusic.png');
+    });
   },
   toggleBackgroundMusic: function () {
-    var toggleImage = $('#togglemusic')[0];
     if (game.backgroundMusic.paused) {
-      game.backgroundMusic.play();
-      toggleImage.src = 'images/icons/music.png';
-      localStorage.setItem('mute', false);
+      game.startBackgroundMusic();
     } else {
-      game.backgroundMusic.pause();
-      $('#togglemusic')[0].src = 'images/icons/nomusic.png';
-      localStorage.setItem('mute', true);
+      game.stopBackgroundMusic();
     }
   },
   showStartScreen: function () {
     game.ended = true;
-    if (!game.backgroundMusic.paused) game.backgroundMusic.pause();
     $('.gamelayer').hide();
     $('#gamestartscreen').show();
   },
   showLevelScreen: function () {
     $('.gamelayer').hide();
     $('#levelselectscreen').show('slow');
+  },
+  showSettingScreen: function () {
+    $('.gamelayer').hide();
+    $('#settingscreen').show();
   },
   restartLevel: function () {
     window.cancelAnimationFrame(game.animationFrame);
@@ -122,10 +137,6 @@ var game = {
     // Display the game canvas and score
     $('#gamecanvas').show();
     $('#scorescreen').show();
-    if (localStorage.getItem('mute') === 'false') {
-      game.startBackgroundMusic();
-      document.getElementById('togglemusic').src = 'images/icons/music.png';
-    }
 
     game.mode = 'intro';
     game.offsetLeft = 0;
