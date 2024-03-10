@@ -15,7 +15,7 @@
 			</canvas>
 			
 			<div id="scorescreen" class="gamelayer">
-				<img id="togglemusic" src="images/icons/nomusic.png" onclick="game.toggleBackgroundMusic();">
+				<img class="togglemusic" src="images/icons/nomusic.png" onclick="game.toggleBackgroundMusic();">
 				<img src="images/icons/prev.png" onclick="game.restartLevel();">
 				<img id="returntostartscreen" onclick="game.showStartScreen();" src="images/icons/return.png"></img>
 				<span id="score">Score: 0</span>
@@ -23,11 +23,19 @@
 			
 			<div id="gamestartscreen" class="gamelayer">
 				<img src="images/icons/play.png" alt="Play Game" onclick="game.showLevelScreen();"><br>
-				<img src="images/icons/settings.png" alt="Settings">
+				<img src="images/icons/settings.png" alt="Settings" onclick="game.showSettingScreen();">
 			</div>
 			
 			<div id="levelselectscreen" class="gamelayer">
 				<p id="returntostartscreen" onclick="game.showStartScreen();"><img src="images/icons/return.png"></p>
+			</div>
+
+			<div id="settingscreen" class="gamelayer">
+				<img onclick="game.showStartScreen();" src="images/icons/changemusic.png"></img>
+				<div class="mini-buttons">
+					<img id="returntostartscreen" onclick="game.showStartScreen();" src="images/icons/return.png"></img>
+					<img class="togglemusic" src="images/icons/nomusic.png" onclick="game.toggleBackgroundMusic();">
+				</div>
 			</div>
 			
 			<div id="loadingscreen" class="gamelayer">

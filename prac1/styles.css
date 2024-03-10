@@ -113,3 +113,18 @@ endingscreen {
   text-shadow: 0 0 2px #000;
   color: white;
 }
+
+#settingscreen {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    cursor: pointer;
+  }
+}
+
+.mini-buttons {
+  margin-top: 10px;
+}
