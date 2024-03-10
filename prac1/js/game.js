@@ -93,6 +93,7 @@ var game = {
     }
   },
   showStartScreen: function () {
+    game.ended = true;
     if (!game.backgroundMusic.paused) game.backgroundMusic.pause();
     $('.gamelayer').hide();
     $('#gamestartscreen').show();
