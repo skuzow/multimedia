@@ -954,6 +954,112 @@ var levels = {
         { type: 'hero', name: 'cyanRobot', x: 80, y: 405 },
         { type: 'hero', name: 'redRobot', x: 140, y: 405 }
       ]
+    },
+    // fifth level
+    {
+      foreground: 'blue-planet-foreground',
+      background: 'purple-planets-background',
+      entities: [
+        {
+          type: 'ground',
+          name: 'dirt',
+          x: 500,
+          y: 440,
+          width: 1000,
+          height: 20,
+          isStatic: true
+        },
+        {
+          type: 'ground',
+          name: 'wood',
+          x: 185,
+          y: 390,
+          width: 30,
+          height: 80,
+          isStatic: true
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 690,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 690,
+          y: 280,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'pinkAlien',
+          x: 690,
+          y: 197,
+          experience: 150
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 790,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 790,
+          y: 280,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'blueAlien',
+          x: 790,
+          y: 197,
+          experience: 250
+        },
+
+        {
+          type: 'block',
+          name: 'wood',
+          x: 890,
+          y: 380,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'block',
+          name: 'glass',
+          x: 890,
+          y: 280,
+          angle: 90,
+          width: 100,
+          height: 25
+        },
+        {
+          type: 'villain',
+          name: 'greenAlien',
+          x: 890,
+          y: 197,
+          experience: 350
+        },
+
+        { type: 'hero', name: 'orangeRobot', x: 80, y: 415 },
+        { type: 'hero', name: 'blueRobot', x: 140, y: 405 }
+      ]
     }
   ],
 
