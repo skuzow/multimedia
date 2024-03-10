@@ -51,9 +51,8 @@ var game = {
     mouse.init();
 
     // Cargar todos los efectos de sonido y música de fondo
-
+    if (!localStorage.getItem('mute')) localStorage.setItem('mute', false);
     if (!this.musicIndex) this.musicIndex = 0;
-    
     this.loadMusic();
 
     game.slingshotReleasedSound = loader.loadSound('audio/released');
