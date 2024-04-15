@@ -1,139 +1,125 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using Vuforia;
 using UnityEngine.UI;
+using Vuforia;
 
 public class VuMarkIdManager : MonoBehaviour
 {
-	World vuforiaWorld;
+    public Text txtId; // Text Vumark Id
+	public Text txtDescripcion; // Text Vumark Description
+	public UnityEngine.UI.Image imgVuMark; // Vumark Image
+	public GameObject[] objectsToDisplay; // Objects to display
 
-    public Text txtId; //ID del VuMark
-	public Text txtDescripcion; //Descripcion del VuMark
-	public UnityEngine.UI.Image imgVuMark; //Imagen del VuMark
-	public GameObject[] arrayObjetos; //Array que contiene los objetos a mostrar
-	int valorVuMark; //Variable que almacena el ID del VuMark
-	int valorObjeto; //Variable utilizada para guardar la posicion del objeto dentro del array
+    World vuforiaWorld;
+	GameObject activeVumark = null; // Active Vumark
 
-	void Start ()
+    // Start point
+	void Start()
 	{
 		vuforiaWorld = VuforiaBehaviour.Instance.World;
 
+		// Setup events
         vuforiaWorld.OnObserverCreated += OnVuMarkDetected;
         vuforiaWorld.OnObserverDestroyed += OnVuMarkLost;
 
-		//Desactiva todos los objetos
-		for (int i = 0; i < arrayObjetos.Length; i++) {
-			arrayObjetos[i].SetActive (false);
-		}
-
-		txtId.text = ""; //Borra el texto actual
-		imgVuMark.sprite = null; //Borra el texto actual
-		txtDescripcion.text = ""; //Borra la imagen actual
+		ResetScene();
 	}
 
-	//Se ejecuta al detectar un VuMark
-	public void OnVuMarkDetected (ObserverBehaviour observerBehaviour)
+	// When a Vumark is detected
+	public void OnVuMarkDetected(ObserverBehaviour observerBehaviour)
 	{
-		if (valorObjeto != null)
-		{
-            arrayObjetos[valorObjeto].SetActive(false);
+        if (observerBehaviour is VuMarkBehaviour vuMarkBehaviour)
+        {
+            ResetScene();
+
+            string activeVumarkId = GetVuMarkId(vuMarkBehaviour); // Active Vumark Id
+
+            txtId.text = activeVumarkId;
+            txtDescripcion.text = GetNumericVuMarkDescription(activeVumarkId);
+            imgVuMark.sprite = GetVuMarkImage(vuMarkBehaviour);
+
+            // Get active Vumark with Find comparing names with id
+			activeVumark = Array.Find(objectsToDisplay, element => element.name == activeVumarkId);
+
+            // Activate if was found
+            if (activeVumark) activeVumark.SetActive(true);
+            // Show Log Message if not
+            else Debug.Log($"Display object for Vumark {activeVumarkId} Id doesn't exist");
         }
+    }
 
-		if (observerBehaviour is VuMarkBehaviour)
-		{
-			VuMarkBehaviour vuMarkBehaviour = (VuMarkBehaviour) observerBehaviour;
-
-            txtId.text = GetVuMarkId(vuMarkBehaviour); //ID del VuMark
-            imgVuMark.sprite = GetVuMarkImage(vuMarkBehaviour); //Imagen del VuMark
-            txtDescripcion.text = GetNumericVuMarkDescription(vuMarkBehaviour); //Descripcion del VuMark
-
-            valorVuMark = int.Parse(GetVuMarkId(vuMarkBehaviour)); //Almacena el ID del VuMark en la variable
-
-            //Recorre todo el array hasta encontrar el objeto que tenga el mismo nombre que el ID del VuMark detectado
-            for (int i = 0; i < arrayObjetos.Length; i++)
-            {
-                if (arrayObjetos[i].name == valorVuMark.ToString())
-                { //Si el nombre del objeto es igual al ID del VuMark..
-                    arrayObjetos[i].SetActive(true); //..Activa el objeto..
-                    valorObjeto = i; //..y almacena su posicion en el array.
-                    break;
-                }
-            }
-        }
-	}
-
-	//Cuando pierde de vista al VuMark
-	public void OnVuMarkLost (ObserverBehaviour _)
+    // When a Vumark is lost from view
+    public void OnVuMarkLost(ObserverBehaviour _)
 	{
-		txtId.text = ""; //Borra el texto actual
-		imgVuMark.sprite = null; //Borra el texto actual
-		txtDescripcion.text = ""; //Borra la imagen actual
+		ResetScene();
+    }
 
-		arrayObjetos[valorObjeto].SetActive (false); //Desactiva el objeto actual
-	}
-
-    //Obtiene el ID del VuMark
+    // Obtain Vumark Id
     string GetVuMarkId(VuMarkBehaviour vumarkTarget)
     {
         switch (vumarkTarget.InstanceId.DataType)
         {
-			case InstanceIdType.BYTE:
-				return vumarkTarget.InstanceId.HexStringValue;
-			case InstanceIdType.STRING:
-				return vumarkTarget.InstanceId.StringValue;
-			case InstanceIdType.NUMERIC:
-				return vumarkTarget.InstanceId.NumericValue.ToString();
-		}
-		return string.Empty;
-	}
+            case InstanceIdType.BYTE:
+                return vumarkTarget.InstanceId.HexStringValue;
+            case InstanceIdType.STRING:
+                return vumarkTarget.InstanceId.StringValue;
+            case InstanceIdType.NUMERIC:
+                return vumarkTarget.InstanceId.NumericValue.ToString();
+            default:
+                break;
+        }
+        return string.Empty;
+    }
 
-	//Obtiene la imagen del VuMark
-	Sprite GetVuMarkImage (VuMarkBehaviour vumarkTarget) {
-		//Toma la imagen del VuMark
-		var instanceImg = vumarkTarget.InstanceImage;
+    // Obtain Vumark Description
+    string GetNumericVuMarkDescription(string activeVumarkId)
+    {
+        return int.Parse(activeVumarkId) switch
+        {
+            1 => "Cube - Yellow",
+            2 => "Sphere - Blue",
+            3 => "Cylinder - Red",
+            _ => "-ERROR-",
+        };
+    }
 
-		if (instanceImg == null)
+    // Obtain Vumark Img
+    Sprite GetVuMarkImage(VuMarkBehaviour vumarkTarget)
+    {
+        // Takes Vumark Img
+        Vuforia.Image instanceImg = vumarkTarget.InstanceImage;
+
+        if (instanceImg == null)
 		{
-			Debug.Log ("La instancia de la imagen del VuMark no existe");
+			Debug.Log("Instance of Vumark doesn't exist");
 			return null;
 		}
 
-		//Se crea una textura a partir de la instancia de la Imagen del VuMark
-		Texture2D texture = new Texture2D (instanceImg.Width, instanceImg.Height, TextureFormat.RGBA32, false) {
+		// It creates a texture from the instace of the Vumark Img
+		Texture2D texture = new(instanceImg.Width, instanceImg.Height, TextureFormat.RGBA32, false)
+        {
 			wrapMode = TextureWrapMode.Clamp
-		};
-		instanceImg.CopyToTexture (texture);
+        };
+        instanceImg.CopyToTexture(texture);
 
-		//Se convierte la textura en un Sprite
-		Rect rect = new Rect (0, 0, texture.width, texture.height);
-		return Sprite.Create (texture, rect, new Vector2 (0.5f, 0.5f));
+		// Converts texture into a sprite
+		Rect rect = new(0, 0, texture.width, texture.height);
+		return Sprite.Create(texture, rect, new Vector2 (0.5f, 0.5f));
 	}
 
-	//Descripcion del VuMark
-	string GetNumericVuMarkDescription (VuMarkBehaviour vumarkTarget)
+    // Reset Vumark related scene elements to default values
+	void ResetScene()
 	{
-		int vuMarkIdNumeric; //Almacenara el ID del VuMark
+		txtId.text = ""; // Deletes actual Text Vumark Id
+		txtDescripcion.text = ""; // Deletes actual Text Vumark Description
+		imgVuMark.sprite = null; // Deletes actual Vumark Image
 
-		if (int.TryParse (GetVuMarkId (vumarkTarget), out vuMarkIdNumeric))
-		{ //Convierte el ID del VuMark en una variable numerica
+        activeVumark = null; // Reset active object
 
-			//Cambia la descripcion de acuerdo al ID del VuMark
-			switch (vuMarkIdNumeric)
-			{
-				case 1:
-					return "Cube - Yellow";
-				case 2:
-					return "Sphere - Blue";
-				case 3:
-					return "Cylinder - Red";
-				default:
-					return "-ERROR-";
-			}
-		}
-
-		return string.Empty; 
-	}
-
-
+        // Disable all objects
+        foreach (GameObject gameObject in objectsToDisplay)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
