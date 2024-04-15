@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 66388834}
   - component: {fileID: 66388833}
   m_Layer: 0
-  m_Name: 1
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 291192160}
   - component: {fileID: 291192159}
   m_Layer: 5
-  m_Name: txtDescription
+  m_Name: TextDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 295152383}
   - component: {fileID: 295152382}
   m_Layer: 5
-  m_Name: txtId
+  m_Name: TextId
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 565071890}
   - component: {fileID: 565071889}
   m_Layer: 0
-  m_Name: 2
+  m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 1572089857}
   - component: {fileID: 1572089856}
   m_Layer: 5
-  m_Name: imgVuMark
+  m_Name: ImgVuMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 1589565173}
   - component: {fileID: 1589565172}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
