@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 66388834}
   - component: {fileID: 66388833}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 565071890}
   - component: {fileID: 565071889}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,13 +918,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572089854}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: -1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 562835308}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -861.2, y: -508.6}
@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 1589565173}
   - component: {fileID: 1589565172}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   txtId: {fileID: 295152382}
   txtDescripcion: {fileID: 291192159}
   imgVuMark: {fileID: 1572089856}
-  arrayObjetos:
+  objectsToDisplay:
   - {fileID: 66388831}
   - {fileID: 565071887}
   - {fileID: 1589565171}
