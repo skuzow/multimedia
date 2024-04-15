@@ -4,22 +4,23 @@ using UnityEngine;
 using Vuforia;
 using UnityEngine.UI;
 
-public class VuMarkIdManager : MonoBehaviour {
+public class VuMarkIdManager : MonoBehaviour
+{
+	World vuforiaWorld;
 
-	VuMarkManager m_VuMarkManager;
-
-	public Text txtId; //ID del VuMark
+    public Text txtId; //ID del VuMark
 	public Text txtDescripcion; //Descripcion del VuMark
 	public UnityEngine.UI.Image imgVuMark; //Imagen del VuMark
 	public GameObject[] arrayObjetos; //Array que contiene los objetos a mostrar
 	int valorVuMark; //Variable que almacena el ID del VuMark
 	int valorObjeto; //Variable utilizada para guardar la posicion del objeto dentro del array
 
+	void Start ()
+	{
+		vuforiaWorld = VuforiaBehaviour.Instance.World;
 
-	void Start () {
-		m_VuMarkManager = TrackerManager.Instance.GetStateManager ().GetVuMarkManager ();
-		m_VuMarkManager.RegisterVuMarkDetectedCallback (OnVuMarkDetected);
-		m_VuMarkManager.RegisterVuMarkLostCallback (OnVuMarkLost);
+        vuforiaWorld.OnObserverCreated += OnVuMarkDetected;
+        vuforiaWorld.OnObserverDestroyed += OnVuMarkLost;
 
 		//Desactiva todos los objetos
 		for (int i = 0; i < arrayObjetos.Length; i++) {
@@ -32,25 +33,39 @@ public class VuMarkIdManager : MonoBehaviour {
 	}
 
 	//Se ejecuta al detectar un VuMark
-	public void OnVuMarkDetected (VuMarkTarget target) {
-		txtId.text = GetVuMarkId (target); //ID del VuMark
-		imgVuMark.sprite = GetVuMarkImage (target); //Imagen del VuMark
-		txtDescripcion.text = GetNumericVuMarkDescription (target); //Descripcion del VuMark
+	public void OnVuMarkDetected (ObserverBehaviour observerBehaviour)
+	{
+		if (valorObjeto != null)
+		{
+            arrayObjetos[valorObjeto].SetActive(false);
+        }
 
-		valorVuMark = int.Parse (GetVuMarkId (target)); //Almacena el ID del VuMark en la variable
+		if (observerBehaviour is VuMarkBehaviour)
+		{
+			VuMarkBehaviour vuMarkBehaviour = (VuMarkBehaviour) observerBehaviour;
 
-		//Recorre todo el array hasta encontrar el objeto que tenga el mismo nombre que el ID del VuMark detectado
-		for (int i = 0; i < arrayObjetos.Length; i++) {
-			if (arrayObjetos[i].name == valorVuMark.ToString()) { //Si el nombre del objeto es igual al ID del VuMark..
-				arrayObjetos[i].SetActive (true); //..Activa el objeto..
-				valorObjeto = i; //..y almacena su posicion en el array.
-				break;
-			}
-		}
+            txtId.text = GetVuMarkId(vuMarkBehaviour); //ID del VuMark
+            imgVuMark.sprite = GetVuMarkImage(vuMarkBehaviour); //Imagen del VuMark
+            txtDescripcion.text = GetNumericVuMarkDescription(vuMarkBehaviour); //Descripcion del VuMark
+
+            valorVuMark = int.Parse(GetVuMarkId(vuMarkBehaviour)); //Almacena el ID del VuMark en la variable
+
+            //Recorre todo el array hasta encontrar el objeto que tenga el mismo nombre que el ID del VuMark detectado
+            for (int i = 0; i < arrayObjetos.Length; i++)
+            {
+                if (arrayObjetos[i].name == valorVuMark.ToString())
+                { //Si el nombre del objeto es igual al ID del VuMark..
+                    arrayObjetos[i].SetActive(true); //..Activa el objeto..
+                    valorObjeto = i; //..y almacena su posicion en el array.
+                    break;
+                }
+            }
+        }
 	}
 
 	//Cuando pierde de vista al VuMark
-	public void OnVuMarkLost (VuMarkTarget target) {
+	public void OnVuMarkLost (ObserverBehaviour _)
+	{
 		txtId.text = ""; //Borra el texto actual
 		imgVuMark.sprite = null; //Borra el texto actual
 		txtDescripcion.text = ""; //Borra la imagen actual
@@ -58,24 +73,28 @@ public class VuMarkIdManager : MonoBehaviour {
 		arrayObjetos[valorObjeto].SetActive (false); //Desactiva el objeto actual
 	}
 
-	//Obtiene el ID del VuMark
-	string GetVuMarkId (VuMarkTarget vumark) {
-		switch (vumark.InstanceId.DataType) {
-			case InstanceIdType.BYTES:
-				return vumark.InstanceId.HexStringValue;
+    //Obtiene el ID del VuMark
+    string GetVuMarkId(VuMarkBehaviour vumarkTarget)
+    {
+        switch (vumarkTarget.InstanceId.DataType)
+        {
+			case InstanceIdType.BYTE:
+				return vumarkTarget.InstanceId.HexStringValue;
 			case InstanceIdType.STRING:
-				return vumark.InstanceId.StringValue;
+				return vumarkTarget.InstanceId.StringValue;
 			case InstanceIdType.NUMERIC:
-				return vumark.InstanceId.NumericValue.ToString ();
+				return vumarkTarget.InstanceId.NumericValue.ToString();
 		}
 		return string.Empty;
 	}
 
 	//Obtiene la imagen del VuMark
-	Sprite GetVuMarkImage (VuMarkTarget vumark) {
+	Sprite GetVuMarkImage (VuMarkBehaviour vumarkTarget) {
 		//Toma la imagen del VuMark
-		var instanceImg = vumark.InstanceImage;
-		if (instanceImg == null) {
+		var instanceImg = vumarkTarget.InstanceImage;
+
+		if (instanceImg == null)
+		{
 			Debug.Log ("La instancia de la imagen del VuMark no existe");
 			return null;
 		}
@@ -92,19 +111,22 @@ public class VuMarkIdManager : MonoBehaviour {
 	}
 
 	//Descripcion del VuMark
-	string GetNumericVuMarkDescription (VuMarkTarget vumark) {
+	string GetNumericVuMarkDescription (VuMarkBehaviour vumarkTarget)
+	{
 		int vuMarkIdNumeric; //Almacenara el ID del VuMark
 
-		if (int.TryParse (GetVuMarkId (vumark), out vuMarkIdNumeric)) { //Convierte el ID del VuMark en una variable numerica
+		if (int.TryParse (GetVuMarkId (vumarkTarget), out vuMarkIdNumeric))
+		{ //Convierte el ID del VuMark en una variable numerica
 
 			//Cambia la descripcion de acuerdo al ID del VuMark
-			switch (vuMarkIdNumeric) {
-				case 10:
-					return "Cubo - Rojo";
-				case 72:
-					return "Esfera - Amarillo";
-				case 548:
-					return "Cilindro - Azul";
+			switch (vuMarkIdNumeric)
+			{
+				case 1:
+					return "Cube - Yellow";
+				case 2:
+					return "Sphere - Blue";
+				case 3:
+					return "Cylinder - Red";
 				default:
 					return "-ERROR-";
 			}
