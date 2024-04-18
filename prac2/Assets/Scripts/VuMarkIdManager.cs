@@ -76,9 +76,9 @@ public class VuMarkIdManager : MonoBehaviour
     {
         return int.Parse(activeVumarkId) switch
         {
-            1 => "Cube - Yellow",
-            2 => "Sphere - Blue",
-            3 => "Cylinder - Red",
+            1 => "Alien",
+            2 => "Cat",
+            3 => "Tiger",
             _ => "-ERROR-",
         };
     }
