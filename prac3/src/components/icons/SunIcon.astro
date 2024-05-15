@@ -1,13 +1,16 @@
 ---
 interface Props {
   size?: string;
+  id?: string;
+  class?: string;
 }
 
-const { size = 20 } = Astro.props;
+const { size = 20, id, class: className } = Astro.props;
 ---
 
 <svg
-  class="swap-off fill-current"
+  id={id}
+  class:list={['fill-current', className]}
   height={size}
   width={size}
   xmlns="http://www.w3.org/2000/svg"

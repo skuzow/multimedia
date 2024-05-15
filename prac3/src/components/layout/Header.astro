@@ -30,12 +30,36 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
 
         <li>
           <label class="swap swap-rotate">
-            <input type="checkbox" value="light" class="theme-controller" />
-            <SunIcon />
-            <MoonIcon />
+            <input type="checkbox" class="theme-controller" />
+            <SunIcon id="sunIcon" />
+            <MoonIcon id="moonIcon" />
           </label>
         </li>
       </ul>
     </div>
   </nav>
 </header>
+
+<script>
+  function getReversePrefersColorScheme(): string {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDark ? 'light' : 'dark';
+  }
+
+  const colorScheme = getReversePrefersColorScheme();
+  const themeController: HTMLInputElement | null =
+    document.querySelector('.theme-controller');
+
+  themeController!.value = colorScheme;
+
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
+
+  if (colorScheme === 'light') {
+    sunIcon!.classList.add('swap-off');
+    moonIcon!.classList.add('swap-on');
+  } else {
+    sunIcon!.classList.add('swap-on');
+    moonIcon!.classList.add('swap-off');
+  }
+</script>
