@@ -1,0 +1,41 @@
+---
+import SunIcon from '@/components/icons/SunIcon.astro';
+import MoonIcon from '@/components/icons/MoonIcon.astro';
+---
+
+<header class="fixed z-10 flex w-full justify-center md:pt-2">
+  <nav class="navbar bg-base-100 md:max-w-screen-md md:rounded-xl">
+    <div class="flex-1">
+      <a href="#" class="btn btn-ghost">
+        <img
+          src="/disneyland-logo.webp"
+          alt="disneyland-logo"
+          class="h-full w-full"
+        />
+      </a>
+    </div>
+
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <details>
+            <summary>Activities</summary>
+            <ul class="rounded-t-none bg-base-100 p-2">
+              <li><a href="#">Activity 1</a></li>
+              <li><a href="#">Activity 2</a></li>
+              <li><a href="#">Activity 3</a></li>
+            </ul>
+          </details>
+        </li>
+
+        <li>
+          <label class="swap swap-rotate">
+            <input type="checkbox" value="light" class="theme-controller" />
+            <SunIcon />
+            <MoonIcon />
+          </label>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

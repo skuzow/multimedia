@@ -1,18 +1,19 @@
 ---
 import '@fontsource-variable/onest';
 
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props;
-
-const THEMES: string[] = ['light', 'dark'];
 ---
 
 <!doctype html>
-<html lang="en" data-theme={THEMES[0]}>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="title" content={title} />
@@ -22,8 +23,10 @@ const THEMES: string[] = ['light', 'dark'];
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="relative">
+    <Header />
     <slot />
+    <Footer />
 
     <style is:global>
       html {
