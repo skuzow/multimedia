@@ -5,12 +5,12 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
 import { ACTIVITIES } from '@/constants/activities';
 ---
 
-<header class="fixed z-10 flex w-full justify-center md:pt-2">
+<header transition:persist class="fixed z-10 flex w-full justify-center md:pt-2">
   <nav
     class="navbar border-base-300 bg-base-200 md:max-w-screen-md md:rounded-xl"
   >
     <div class="flex-1">
-      <a href="/#" aria-label="#">
+      <a href="/#" aria-label="home">
         <img
           width="145"
           src="/disneyland-logo.webp"
@@ -23,7 +23,7 @@ import { ACTIVITIES } from '@/constants/activities';
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
         <li>
-          <details>
+          <details id="headerMenuDetails">
             <summary>Activities</summary>
             <ul class="rounded-t-none bg-base-100 p-2">
               {
@@ -51,10 +51,15 @@ import { ACTIVITIES } from '@/constants/activities';
   </nav>
 </header>
 
-<script>
+<script >
   function getReversePrefersColorScheme(): string {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     return isDark ? 'light' : 'dark';
+  }
+
+  function closeMenuDetails() {
+    const details = document.getElementById('headerMenuDetails');
+    details!.removeAttribute('open');
   }
 
   const colorScheme = getReversePrefersColorScheme();
@@ -73,4 +78,8 @@ import { ACTIVITIES } from '@/constants/activities';
     sunIcon!.classList.add('swap-on');
     moonIcon!.classList.add('swap-off');
   }
+
+  document.querySelectorAll('header nav a').forEach((link) => {
+    link.addEventListener('click', (_) => closeMenuDetails());
+  });
 </script>
