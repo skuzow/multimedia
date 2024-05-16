@@ -1,5 +1,50 @@
 ---
-
+import XIcon from '@/components/icons/XIcon.astro';
+import YoutubeIcon from '@/components/icons/YoutubeIcon.astro';
+import WebsiteIcon from '@/components/icons/WebsiteIcon.astro';
 ---
 
-<footer></footer>
+<footer class="footer bg-base-200 px-10 py-4 text-base-content">
+  <aside class="grid-flow-col items-center">
+    <a
+      href="https://www.disneylandparis.com"
+      aria-label="disney-website"
+      target="_blank"
+      class="hover:cursor-pointer"
+    >
+      <img width="150" src="/disney-logo.svg" alt="disney-logo" class="mr-3" />
+    </a>
+    <p>
+      The Walt Disney Company. Providing reliable themed parks since 1990.<br />
+      Website for study purposes only.
+    </p>
+  </aside>
+  <nav class="justify-self-center md:place-self-center md:justify-self-end">
+    <div class="grid grid-flow-col gap-4">
+      <a
+        href="https://x.com/disney"
+        aria-label="x"
+        target="_blank"
+        class="hover:cursor-pointer"
+      >
+        <XIcon size="25" />
+      </a>
+      <a
+        href="https://www.youtube.com/@disneyspain"
+        aria-label="youtube"
+        target="_blank"
+        class="hover:cursor-pointer"
+      >
+        <YoutubeIcon size="25" />
+      </a>
+      <a
+        href="https://www.disneylandparis.com"
+        aria-label="disney-website"
+        target="_blank"
+        class="hover:cursor-pointer"
+      >
+        <WebsiteIcon size="25" />
+      </a>
+    </div>
+  </nav>
+</footer>
