@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+import { ACTIVITIES, type Activity } from '@/constants/activities';
+
+export const getStaticPaths = () => {
+  return ACTIVITIES.map((activity) => ({
+    params: { id: activity.id }
+  }));
+};
+
+export const prerender = true;
+
+const { id } = Astro.params;
+
+const getActivityById = (id: string) => {
+  return ACTIVITIES.find((activity) => activity.id === id);
+};
+
+const activityData: Activity | undefined = getActivityById(id!);
+
+if (!activityData) {
+  return {
+    status: 404
+  };
+}
+
+const { title, description, imageUrl, summary, explanation } = activityData;
+---
+
+<Layout title={title} description={description}>
+  <img src={imageUrl} alt={title} />
+  <h1 class="text-5xl">{title}</h1>
+  <h1 class="text-2xl">{description}</h1>
+  <h1 class="text-xl">{summary}</h1>
+  {
+    explanation.map(({ title, description, imageUrl }) => (
+      <div class="mt-3">
+        <h2 class="text-3xl">{title}</h2>
+        <p>{description}</p>
+        <img src={imageUrl} alt={title} />
+      </div>
+    ))
+  }
+</Layout>

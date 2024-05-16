@@ -1,6 +1,8 @@
 ---
 import SunIcon from '@/components/icons/SunIcon.astro';
 import MoonIcon from '@/components/icons/MoonIcon.astro';
+
+import { ACTIVITIES } from '@/constants/activities';
 ---
 
 <header class="fixed z-10 flex w-full justify-center md:pt-2">
@@ -8,7 +10,7 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
     class="navbar border-base-300 bg-base-200 md:max-w-screen-md md:rounded-xl"
   >
     <div class="flex-1">
-      <a href="#" aria-label="#">
+      <a href="/#" aria-label="#">
         <img
           width="145"
           src="/disneyland-logo.webp"
@@ -24,9 +26,15 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
           <details>
             <summary>Activities</summary>
             <ul class="rounded-t-none bg-base-100 p-2">
-              <li><a href="#" aria-label="#">Activity 1</a></li>
-              <li><a href="#" aria-label="#">Activity 2</a></li>
-              <li><a href="#" aria-label="#">Activity 3</a></li>
+              {
+                ACTIVITIES.map(({id, title}) => (
+                  <li>
+                    <a href=`/activities/${id}` aria-label={id}>
+                      {title}
+                    </a>
+                  </li>
+                ))
+              }
             </ul>
           </details>
         </li>
