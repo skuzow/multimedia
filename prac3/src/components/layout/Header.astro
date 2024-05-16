@@ -5,7 +5,10 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
 import { ACTIVITIES } from '@/constants/activities';
 ---
 
-<header transition:persist class="fixed z-10 flex w-full justify-center md:pt-2">
+<header
+  transition:persist
+  class="fixed z-10 flex w-full justify-center md:pt-2"
+>
   <nav
     class="navbar border-base-300 bg-base-200 md:max-w-screen-md md:rounded-xl"
   >
@@ -27,9 +30,9 @@ import { ACTIVITIES } from '@/constants/activities';
             <summary>Activities</summary>
             <ul class="rounded-t-none bg-base-100 p-2">
               {
-                ACTIVITIES.map(({id, title}) => (
+                ACTIVITIES.map(({ id, title }) => (
                   <li>
-                    <a href=`/activities/${id}` aria-label={id}>
+                    <a href={`/activities/${id}`} aria-label={id}>
                       {title}
                     </a>
                   </li>
@@ -51,7 +54,7 @@ import { ACTIVITIES } from '@/constants/activities';
   </nav>
 </header>
 
-<script >
+<script>
   function getReversePrefersColorScheme(): string {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     return isDark ? 'light' : 'dark';
