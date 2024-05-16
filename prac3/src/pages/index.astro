@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-
+import { photos } from '@/constants/travelerPhotos';
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon.astro';
 ---
 
@@ -82,13 +82,44 @@ import ArrowDownIcon from '@/components/icons/ArrowDownIcon.astro';
 
     <section id="traveler-photos">
       <h1>Traveler Photos</h1>
+      <div class="flex flex-row">
+        {
+          photos.map(({ title, imageUrl }) => (
+            <img class="traveler-photo" src={`${imageUrl}`} alt={title}/>
+          ))
+        }
+      </div>
+      <div class="form-container mt-5 grid justify-items-center">
+        <a class="btn" onclick="this.toggleForm()">Share your experience</a>
+        <div id="upload-form" class="form-container mt-5 grid justify-items-center" style="display: none;">
+          <form action="/upload" method="post" enctype="multipart/form-data">
+              <div>
+                  <label for="photo">Select a photo:</label>
+                  <input type="file" id="photo" name="photo" accept="image/*" required>
+              </div>
+              <div>
+                  <label for="description">Description:</label>
+                  <textarea id="description" name="description"></textarea>
+              </div>
+              <button type="submit">Upload</button>
+        </form>
+      </div>
     </section>
+
+  </div>
   </main>
 </Layout>
 
 <style>
   .background-castle {
     background-image: url('/disneyland-california.avif');
+  }
+
+  .traveler-photo {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    margin-right: 10px;
   }
 
   section {
@@ -103,3 +134,14 @@ import ArrowDownIcon from '@/components/icons/ArrowDownIcon.astro';
     margin-top: 20px;
   }
 </style>
+
+<script>
+  function toggleForm() {
+        var form = document.getElementById("upload-form");
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+  }
+</script>
