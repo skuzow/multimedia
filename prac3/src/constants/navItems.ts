@@ -19,5 +19,10 @@ export const NAVITEMS: NavItem[] = [
     url: '/#plan-your-visit',
     label: 'plan-your-visit',
     text: 'Plan your visit'
+  },
+  {
+    url: '/#traveler-photos',
+    label: 'traveler-photos',
+    text: 'Traveler Photos'
   }
 ];

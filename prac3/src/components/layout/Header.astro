@@ -4,7 +4,6 @@ import SunIcon from '@/components/icons/SunIcon.astro';
 import MoonIcon from '@/components/icons/MoonIcon.astro';
 
 import { NAVITEMS } from '@/constants/navItems';
-import { ACTIVITIES } from '@/constants/activities';
 ---
 
 <header
@@ -14,20 +13,20 @@ import { ACTIVITIES } from '@/constants/activities';
   <nav
     class="navbar border-base-300 bg-base-200 md:max-w-screen-md md:rounded-xl"
   >
-    <div class="flex-1">
+    <div class="ml-4 flex-1">
       <a href="/#" aria-label="home" class="smooth-scroll">
         <img
           width="145"
           height="50"
           src="/disneyland-california-logo.svg"
           alt="disneyland-california-logo"
-          class="ml-4 brightness-200"
+          class="brightness-200"
         />
       </a>
     </div>
 
-    <div class="flex-none px-1">
-      <ul class="menu menu-horizontal hidden" id="desktopMenu">
+    <div class="mr-2 flex-none">
+      <ul id="desktopMenu" class="menu menu-horizontal hidden px-0">
         <li id="navItems" class="flex-row">
           {
             NAVITEMS.map(({ url, label, text }) => (
@@ -37,31 +36,16 @@ import { ACTIVITIES } from '@/constants/activities';
             ))
           }
         </li>
-        <li id="activitiesMenu">
-          <details id="headerMenuDetails">
-            <summary>Activities</summary>
-            <ul class="rounded-t-none bg-base-100 p-2">
-              {
-                ACTIVITIES.map(({ id, title }) => (
-                  <li>
-                    <a href={`/activities/${id}`} aria-label={id}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </details>
-        </li>
       </ul>
 
-      <div class="dropdown hidden" id="mobileMenu">
+      <div id="mobileMenu" class="dropdown hidden px-0">
         <div tabindex="0" role="button" class="btn btn-circle btn-ghost">
           <HamburguerMenuIcon />
         </div>
         <ul
           tabindex="0"
-          class="menu dropdown-content menu-sm z-[1] mt-10 w-32 rounded-box bg-base-100 p-2 shadow"
+          class="menu dropdown-content menu-sm z-[1] mt-10 w-24 rounded-box
+          bg-base-100 p-2 shadow"
         >
           {
             NAVITEMS.map(({ url, label, text }) => (
@@ -72,26 +56,10 @@ import { ACTIVITIES } from '@/constants/activities';
               </li>
             ))
           }
-          <li>
-            <details>
-              <summary>Activities</summary>
-              <ul>
-                {
-                  ACTIVITIES.map(({ id, title }) => (
-                    <li>
-                      <a href={`/activities/${id}`} aria-label={id}>
-                        {title}
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </details>
-          </li>
         </ul>
       </div>
 
-      <ul class="menu hidden" id="themeToggle">
+      <ul id="themeToggle" class="menu hidden px-0">
         <li>
           <label class="swap swap-rotate">
             <input type="checkbox" class="theme-controller" />
@@ -120,11 +88,6 @@ import { ACTIVITIES } from '@/constants/activities';
       }
     }
 
-    function closeMenuDetails() {
-      const details = document.getElementById('headerMenuDetails');
-      details!.removeAttribute('open');
-    }
-
     const colorScheme = getReversePrefersColorScheme();
     const themeController: HTMLInputElement | null =
       document.querySelector('.theme-controller');
@@ -150,11 +113,5 @@ import { ACTIVITIES } from '@/constants/activities';
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('load', handleResize);
-
-    const activitiesMenu = document.getElementById('activitiesMenu');
-
-    activitiesMenu!.querySelectorAll('details a').forEach((link) => {
-      link.addEventListener('click', (_) => closeMenuDetails());
-    });
   </script>
 </header>

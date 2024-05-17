@@ -10,9 +10,9 @@ const { id, title } = Astro.props;
 <section
   id={id}
   data-section={id}
-  class="mx-auto px-5 py-5 md:max-w-screen-md md:px-0"
+  class="mx-auto my-10 px-5 md:max-w-screen-md md:px-0"
 >
-  <h2 class="flex justify-center text-2xl font-bold">{title}</h2>
+  <h2 class="my-2 flex justify-center text-2xl font-bold">{title}</h2>
   <div class="text-justify [&>p]:mt-5">
     <slot />
   </div>

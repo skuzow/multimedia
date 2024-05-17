@@ -166,8 +166,7 @@ import { PHOTOS } from '@/constants/travelerPhotos';
       </p>
     </Section>
 
-    <section id="traveler-photos">
-      <h1>Traveler Photos</h1>
+    <Section id={NAVITEMS[3]!.label} title="Traveler Photos">
       <div class="flex flex-row">
         {
           PHOTOS.map(({ title, imageUrl }) => (
@@ -201,7 +200,7 @@ import { PHOTOS } from '@/constants/travelerPhotos';
           </form>
         </div>
       </div>
-    </section>
+    </Section>
   </main>
 </Layout>
 
