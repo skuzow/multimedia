@@ -167,7 +167,7 @@ import { PHOTOS } from '@/constants/travelerPhotos';
     </Section>
 
     <Section id={NAVITEMS[3]!.label} title="Traveler Photos">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {
           PHOTOS.map(({ title, imageUrl }) => (
             <img class="traveler-photo" src={`${imageUrl}`} alt={title} />
