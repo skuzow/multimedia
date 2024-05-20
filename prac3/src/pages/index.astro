@@ -167,7 +167,7 @@ import { PHOTOS } from '@/constants/travelerPhotos';
     </Section>
 
     <Section id={NAVITEMS[3]!.label} title="Traveler Photos">
-      <div class="flex flex-row">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {
           PHOTOS.map(({ title, imageUrl }) => (
             <img class="traveler-photo" src={`${imageUrl}`} alt={title} />
@@ -175,15 +175,12 @@ import { PHOTOS } from '@/constants/travelerPhotos';
         }
       </div>
       <div class="form-container mt-5 grid justify-items-center">
-        <a class="btn" onclick="this.toggleForm()">Share your experience</a>
         <div
           id="upload-form"
           class="form-container mt-5 grid justify-items-center"
-          style="display: none;"
         >
-          <form action="/upload" method="post" enctype="multipart/form-data">
+          <form id="photo-upload-form" method="post" enctype="multipart/form-data">
             <div>
-              <label for="photo">Select a photo:</label>
               <input
                 type="file"
                 id="photo"
@@ -191,14 +188,14 @@ import { PHOTOS } from '@/constants/travelerPhotos';
                 accept="image/*"
                 required
               />
+              <button class="btn" type="submit">Upload</button>
             </div>
-            <div>
-              <label for="description">Description:</label>
-              <textarea id="description" name="description"></textarea>
-            </div>
-            <button type="submit">Upload</button>
           </form>
         </div>
+      </div>
+      <div id="alert" role="alert" class="alert alert-success my-2" style="display: none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>Your photo has been uploaded!</span>
       </div>
     </Section>
   </main>
@@ -218,12 +215,21 @@ import { PHOTOS } from '@/constants/travelerPhotos';
 </style>
 
 <script>
-  // function toggleForm() {
-  //   const form = document.getElementById('upload-form');
-  //   if (form.style.display === 'none') {
-  //     form.style.display = 'block';
-  //   } else {
-  //     form.style.display = 'none';
-  //   }
-  // }
+  const alert = document.getElementById("alert");
+  const form = document.getElementById('photo-upload-form') as HTMLFormElement;
+
+  // Function to handle form submission
+  form?.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Show the alert
+    alert.style.display = "block";
+    
+    form.reset();
+
+    // Hide the alert after 5 seconds
+    setTimeout(() => {
+      alert.style.display = "none";
+    }, 5000);
+  });
 </script>
