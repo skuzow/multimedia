@@ -51,8 +51,9 @@ const { navItem } = Astro.props;
             name="photo"
             accept="image/*"
             required
+            aria-label="Select photo to upload"
           />
-          <button class="btn" type="submit">Upload</button>
+          <button class="btn" type="submit" aria-label="Upload photo">Upload</button>
         </div>
       </form>
     </div>
