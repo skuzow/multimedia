@@ -1,37 +1,43 @@
 ---
+import GitHubIcon from '@/components/icons/GitHubIcon.astro';
 import XIcon from '@/components/icons/XIcon.astro';
 import YoutubeIcon from '@/components/icons/YoutubeIcon.astro';
 import WebsiteIcon from '@/components/icons/WebsiteIcon.astro';
-import WcagIcon from '../icons/WcagIcon.astro';
+import WcagIcon from '@/components/icons/WcagIcon.astro';
 ---
 
 <footer
   transition:persist
-  class="footer bg-base-200 px-10 py-4 text-base-content"
+  class="footer bg-base-200 px-10 py-4 text-base-content md:px-5"
 >
-  <aside class="grid-flow-col items-center">
-    <a
-      href="https://www.disney.com"
-      aria-label="disney-website"
-      target="_blank"
-      class="brightness-150"
-    >
-      <img
-        width="150"
-        height="50"
-        src="/disney-logo.svg"
-        alt="disney-logo"
-        class="mr-3"
-      />
-    </a>
-    <p>
-      The Walt Disney Company. Providing reliable themed parks since 1990.<br />
-      Website for study purposes only.
-    </p>
-  </aside>
+  <div
+    class="mx-auto flex flex-col items-center justify-center gap-3 md:max-w-screen-lg
+    md:flex-row md:gap-10"
+  >
+    <div class="flex flex-col items-center gap-3 md:flex-row">
+      <a
+        href="https://www.disney.com"
+        aria-label="disney-website"
+        target="_blank"
+        class="brightness-150"
+      >
+        <img width="150" height="50" src="/disney-logo.svg" alt="disney-logo" />
+      </a>
+      <p class="text-center md:text-left">
+        The Walt Disney Company. Providing reliable themed parks since 1990.
+        <br class="hidden md:flex" />
+        Website for study purposes only.
+      </p>
+    </div>
 
-  <nav class="justify-self-center md:place-self-center md:justify-self-end">
-    <div class="grid grid-flow-col gap-4">
+    <nav class="flex gap-4">
+      <a
+        href="https://github.com/skuzow/multimedia"
+        aria-label="github-project"
+        target="_blank"
+      >
+        <GitHubIcon size="25" />
+      </a>
       <a href="https://x.com/disney" aria-label="disney-x" target="_blank">
         <XIcon size="25" />
       </a>
@@ -57,6 +63,6 @@ import WcagIcon from '../icons/WcagIcon.astro';
       >
         <WcagIcon size="25" />
       </a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </footer>
