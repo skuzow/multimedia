@@ -7,7 +7,7 @@ import RideShows from '@/components/pages/index/sections/RideShows.astro';
 import HowPlan from '@/components/pages/index/sections/HowPlan.astro';
 import TravelerPhotos from '@/components/pages/index/sections/TravelerPhotos.astro';
 
-import { NAVITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/navItems';
 ---
 
 <Layout
@@ -15,10 +15,11 @@ import { NAVITEMS } from '@/constants/navItems';
   description="Multi-day disney themed resort"
 >
   <main class="overflow-x-hidden">
-    <Hero navItem={NAVITEMS[0]!} />
-    <WhatExpect navItem={NAVITEMS[0]!} />
-    <RideShows navItem={NAVITEMS[1]!} />
-    <HowPlan navItem={NAVITEMS[2]!} />
-    <TravelerPhotos navItem={NAVITEMS[3]!} />
+    <Hero />
+
+    <WhatExpect navItem={NAV_ITEMS[0]!} />
+    <RideShows navItem={NAV_ITEMS[1]!} />
+    <HowPlan navItem={NAV_ITEMS[2]!} />
+    <TravelerPhotos navItem={NAV_ITEMS[3]!} />
   </main>
 </Layout>

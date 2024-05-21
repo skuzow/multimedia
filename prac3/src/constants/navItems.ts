@@ -4,7 +4,7 @@ export interface NavItem {
   text: string;
 }
 
-export const NAVITEMS: NavItem[] = [
+export const NAV_ITEMS: NavItem[] = [
   {
     url: '/#what-to-expect',
     label: 'what-to-expect',

@@ -34,6 +34,7 @@ const { title, description } = Astro.props;
     <slot />
     <Footer />
 
+    <script src="node_modules/lite-youtube-embed/src/lite-yt-embed.js"></script>
     <script>
       function scrollToHome() {
         window.scrollTo({
@@ -72,8 +73,6 @@ const { title, description } = Astro.props;
         });
       });
     </script>
-
-    <script src="node_modules/lite-youtube-embed/src/lite-yt-embed.js"></script>
 
     <style is:global>
       html {

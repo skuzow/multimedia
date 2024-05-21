@@ -1,20 +1,16 @@
 ---
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon.astro';
 
-import { type NavItem } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/navItems';
 
-interface Props {
-  navItem: NavItem;
-}
-
-const { navItem } = Astro.props;
+const firstNavItem = NAV_ITEMS[0]!;
 ---
 
 <div class="background-castle hero min-h-screen">
   <div class="hero-overlay flex items-end justify-center bg-opacity-60">
     <a
-      href={navItem.url}
-      aria-label={navItem.label}
+      href={firstNavItem.url}
+      aria-label={firstNavItem.label}
       class="smooth-scroll mb-10 flex animate-bounce justify-center text-neutral-content"
     >
       <ArrowDownIcon size="50" />
@@ -32,8 +28,8 @@ const { navItem } = Astro.props;
         attractions.
       </p>
       <a
-        href={navItem.url}
-        aria-label={navItem.label}
+        href={firstNavItem.url}
+        aria-label={firstNavItem.label}
         class="smooth-scroll btn"
       >
         Get started

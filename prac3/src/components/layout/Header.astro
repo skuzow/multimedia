@@ -3,7 +3,7 @@ import HamburguerMenuIcon from '@/components/icons/HamburguerMenuIcon.astro';
 import SunIcon from '@/components/icons/SunIcon.astro';
 import MoonIcon from '@/components/icons/MoonIcon.astro';
 
-import { NAVITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/navItems';
 ---
 
 <script>
@@ -76,7 +76,7 @@ import { NAVITEMS } from '@/constants/navItems';
       <ul id="desktopMenu" class="menu menu-horizontal hidden px-0">
         <li id="navItems" class="flex-row">
           {
-            NAVITEMS.map(({ url, label, text }) => (
+            NAV_ITEMS.map(({ url, label, text }) => (
               <a href={url} aria-label={label} class="smooth-scroll">
                 {text}
               </a>
@@ -95,7 +95,7 @@ import { NAVITEMS } from '@/constants/navItems';
           bg-base-100 p-2 shadow"
         >
           {
-            NAVITEMS.map(({ url, label, text }) => (
+            NAV_ITEMS.map(({ url, label, text }) => (
               <li>
                 <a href={url} aria-label={label} class="smooth-scroll">
                   {text}
