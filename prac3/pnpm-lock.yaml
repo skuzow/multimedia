@@ -20,6 +20,9 @@ importers:
       astro:
         specifier: ^4.7.0
         version: 4.7.0(typescript@5.4.5)
+      lite-youtube-embed:
+        specifier: ^0.3.2
+        version: 0.3.2
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
@@ -1246,6 +1249,9 @@ packages:
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+
+  lite-youtube-embed@0.3.2:
+    resolution: {integrity: sha512-b1dgKyF4PHhinonmr3PB172Nj0qQgA/7DE9EmeIXHR1ksnFEC2olWjNJyJGdsN2cleKHRjjsmrziKlwXtPlmLQ==}
 
   load-yaml-file@0.2.0:
     resolution: {integrity: sha512-OfCBkGEw4nN6JLtgRidPX6QxjBQGQf72q3si2uvqyFEMbycSFFHwAZeXx6cJgFM9wmLrf9zBwCP3Ivqa+LLZPw==}
@@ -3466,6 +3472,8 @@ snapshots:
   lilconfig@3.1.1: {}
 
   lines-and-columns@1.2.4: {}
+
+  lite-youtube-embed@0.3.2: {}
 
   load-yaml-file@0.2.0:
     dependencies:
