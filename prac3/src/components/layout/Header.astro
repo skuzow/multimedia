@@ -1,5 +1,6 @@
 ---
 import HamburguerMenuIcon from '@/components/icons/HamburguerMenuIcon.astro';
+import InvisibleCharacter from '@/components/common/InvisibleCharacter.astro';
 import SunIcon from '@/components/icons/SunIcon.astro';
 import MoonIcon from '@/components/icons/MoonIcon.astro';
 
@@ -108,8 +109,13 @@ import { NAV_ITEMS } from '@/constants/navItems';
 
       <ul id="themeToggle" class="menu hidden px-0">
         <li>
-          <label class="swap swap-rotate">
-            <input type="checkbox" class="theme-controller" />
+          <label for="theme-controller" class="swap swap-rotate">
+            <InvisibleCharacter class="absolute" />
+            <input
+              type="checkbox"
+              id="theme-controller"
+              class="theme-controller"
+            />
             <SunIcon id="sunIcon" />
             <MoonIcon id="moonIcon" />
           </label>
