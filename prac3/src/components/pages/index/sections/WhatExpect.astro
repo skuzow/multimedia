@@ -5,41 +5,70 @@ import YoutubeEmbed from '@/components/common/YoutubeEmbed.astro';
 import { type NavItem } from '@/constants/navItems';
 
 interface Props {
-  navItem: NavItem;
+	navItem: NavItem;
 }
 
 const { navItem } = Astro.props;
 ---
 
-<Section id={navItem.label} title="What to Expect at Disneyland Resort">
-  <p>
-    Consisting of the original Disneyland Park and the adjacent Disney
-    California Adventure Park, the sprawling Disneyland Resort is divided up
-    into themed “lands” with related rides, shows, and attractions. Rising
-    beyond Main Street, Sleeping Beauty Castle is the unmistakable beacon at the
-    heart of the theme park, with its turquoise-tiled towers, golden turrets,
-    and working drawbridge. You’ll find an abode of an entirely different sort
-    in the Adventureland Treehouse, which is inspired by Walt Disney’s Swiss
-    Family Robinson. The treehouse is bigger and more impressive than ever after
-    an extensive reimagining of the 1962 original.
-  </p>
-  <p>
-    Visitors to the park in 2024 are in for a special experience to mark a
-    milestone. Though the park opened in 1955, Walk Disney and his brother, Roy,
-    launched the Disney Brothers Cartoon Studio in 1923. Beginning Jan. 27 and
-    throughout 2023, the park’s Disney100 Celebration will mark the company’s
-    centennial with special decor, food and drink, merchandise, and new rides
-    and shows.
-  </p>
-  <p>
-    If you’d like to see all the goings-on and special events that will be
-    taking place at Disneyland Resort in the coming year so you can plan your
-    trip accordingly, see this 2024 calendar.
-  </p>
-  <YoutubeEmbed
-    videoId="gTDTiAjIv_E"
-    playLabel="Play: Disneyland Resort Destination Promotional Video (2020)"
-    title="Disneyland Resort Destination Promotional Video (2020)"
-    class="mx-auto"
-  />
+<Section
+	id={navItem.label}
+	title="What to Expect at Disneyland Resort">
+	<p>
+		Consisting of the original&nbsp;<a
+			href="https://disneyland.disney.go.com/destinations/disneyland/"
+			target="_blank"
+			rel="nofollow"
+			>Disneyland Park</a
+		>&nbsp;and the adjacent&nbsp;<a
+			href="https://disneyland.disney.go.com/destinations/disney-california-adventure/"
+			target="_blank"
+			rel="nofollow"
+			>Disney California Adventure Park</a
+		>, the sprawling Disneyland Resort is divided up into themed “lands”
+		with related rides, shows, and attractions. Rising beyond Main
+		Street,&nbsp;<a
+			href="https://disneyland.disney.go.com/attractions/disneyland/sleeping-beauty-castle-walkthrough/"
+			target="_blank"
+			rel="nofollow"
+			>Sleeping Beauty Castle</a
+		>&nbsp;is the unmistakable beacon at the heart of the theme park, with
+		its turquoise-tiled towers, golden turrets, and working drawbridge.
+		You’ll find an abode of an entirely different sort in the <a
+			href="https://disneyland.disney.go.com/attractions/disneyland/adventureland-treehouse/"
+			target="_blank"
+			rel="nofollow"
+			>Adventureland Treehouse</a
+		>, which is inspired by Walt Disney’s <em>Swiss Family Robinson</em>.
+		The treehouse is bigger and more impressive than ever after an extensive
+		reimagining of the 1962 original.
+	</p>
+	<p>
+		Visitors to the park in 2024 are in for a special experience to mark a
+		milestone. Though the park opened in 1955, Walk Disney and his brother,
+		Roy, launched the Disney Brothers Cartoon Studio in 1923. Beginning Jan.
+		27 and throughout 2023, the park’s&nbsp;<a
+			href="https://disneyland.disney.go.com/100th-anniversary/"
+			target="_blank"
+			rel="nofollow"
+			>Disney100 Celebration</a
+		>&nbsp;will mark the company’s centennial with special decor, food and
+		drink, merchandise, and new rides and shows.<o:p></o:p>
+	</p>
+	<p>
+		If you’d like to see all the goings-on and special events that will be
+		taking place at Disneyland Resort in the coming year so you can plan
+		your trip accordingly, see this&nbsp;<a
+			href="https://disneyparks.disney.go.com/blog/2023/12/disneyland-resort-announces-event-dates-and-more-for-2024/?CMP=SOC-DPFY24Q1wo1130230004A"
+			target="_blank"
+			rel="nofollow"
+			>2024 calendar</a
+		>.
+	</p>
+	<YoutubeEmbed
+		videoId="gTDTiAjIv_E"
+		playLabel="Play: Disneyland Resort Destination Promotional Video (2020)"
+		title="Disneyland Resort Destination Promotional Video (2020)"
+		class="mx-auto"
+	/>
 </Section>

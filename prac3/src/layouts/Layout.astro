@@ -6,8 +6,8 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 
 interface Props {
-  title: string;
-  description: string;
+	title: string;
+	description: string;
 }
 
 const { title, description } = Astro.props;
@@ -15,77 +15,100 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="node_modules/lite-youtube-embed/src/lite-yt-embed.css"
-    />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <ViewTransitions />
-  </head>
-  <body class="relative">
-    <Header />
-    <slot />
-    <Footer />
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="title"
+			content={title}
+		/>
+		<meta
+			name="description"
+			content={description}
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="/favicon.ico"
+		/>
+		<link
+			rel="stylesheet"
+			href="node_modules/lite-youtube-embed/src/lite-yt-embed.css"
+		/>
+		<meta
+			name="generator"
+			content={Astro.generator}
+		/>
+		<title>{title}</title>
+		<ViewTransitions />
+	</head>
+	<body class="relative">
+		<Header />
+		<slot />
+		<Footer />
 
-    <script>
-      function scrollToHome() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }
+		<script>
+			function scrollToHome() {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			}
 
-      function scrollToSection(id: string) {
-        const section = document.getElementById(id);
+			function scrollToSection(id: string) {
+				const section = document.getElementById(id);
 
-        if (section instanceof HTMLElement) {
-          const topGap = document.querySelector('header')!.offsetHeight + 20;
+				if (section instanceof HTMLElement) {
+					const topGap =
+						document.querySelector('header')!.offsetHeight + 20;
 
-          window.scrollTo({
-            top: section.offsetTop - topGap,
-            behavior: 'smooth'
-          });
-        }
-      }
+					window.scrollTo({
+						top: section.offsetTop - topGap,
+						behavior: 'smooth'
+					});
+				}
+			}
 
-      const smoothScrollItems = document.querySelectorAll('.smooth-scroll');
+			const smoothScrollItems =
+				document.querySelectorAll('.smooth-scroll');
 
-      smoothScrollItems!.forEach((link) => {
-        link.addEventListener('click', (event) => {
-          const currentPathName = window.location.pathname;
-          if (currentPathName !== '/') return;
+			smoothScrollItems!.forEach((link) => {
+				link.addEventListener('click', (event) => {
+					const currentPathName = window.location.pathname;
+					if (currentPathName !== '/') return;
 
-          event.preventDefault();
+					event.preventDefault();
 
-          const targetId = link.getAttribute('aria-label');
-          if (!targetId) return;
+					const targetId = link.getAttribute('aria-label');
+					if (!targetId) return;
 
-          if (targetId === 'home') return scrollToHome();
-          scrollToSection(targetId);
-        });
-      });
-    </script>
+					if (targetId === 'home') return scrollToHome();
+					scrollToSection(targetId);
+				});
+			});
+		</script>
 
-    <script src="node_modules/lite-youtube-embed/src/lite-yt-embed.js"></script>
+		<script src="node_modules/lite-youtube-embed/src/lite-yt-embed.js"
+		></script>
 
-    <style is:global>
-      html {
-        font-family: 'Onest Variable', system-ui, sans-serif;
-        scroll-behavior: smooth;
-      }
+		<style is:global>
+			html {
+				font-family: 'Onest Variable', system-ui, sans-serif;
+				scroll-behavior: smooth;
+			}
 
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-    </style>
-  </body>
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+			}
+
+			a {
+				text-decoration: underline;
+			}
+		</style>
+	</body>
 </html>
