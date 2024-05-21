@@ -1,96 +1,81 @@
 ---
 import Section from '@/components/common/Section.astro';
+import Link from '@/components/common/Link.astro';
 
 import { type NavItem } from '@/constants/navItems';
 
 interface Props {
-	navItem: NavItem;
+  navItem: NavItem;
 }
 
 const { navItem } = Astro.props;
 ---
 
-<Section
-	id={navItem.label}
-	title="How to Plan Your Visit to Disneyland Resort">
-	<p>
-		Download the free&nbsp;<a
-			href="https://disneyland.disney.go.com/guest-services/download-disneyland-mobile-app/"
-			target="_blank"
-			rel="nofollow"
-			>Disneyland Mobile app</a
-		>&nbsp;to buy tickets, check out wait times, browse maps, and even&nbsp;<a
-			href="https://disneyland.disney.go.com/guest-services/mobile-food-orders/"
-			target="_blank"
-			rel="nofollow"
-			>order food</a
-		>&nbsp;or locate Disney characters. You’ll also be able to access&nbsp;<a
-			href="https://disneyland.disney.go.com/genie/?int_cmp=INS-intDLRtoDLR-Genie"
-			target="_blank"
-			rel="nofollow"
-			>Disney Genie and Disney Genie+</a
-		>&nbsp;services, which can provide tailored recommendations, generate
-		daily itineraries, and help you buy Lightning Lane purchases to reserve
-		ride times. Another high-tech option is the MagicBand+, a
-		next-generation wrist-wearable band that enables visitors to experience
-		the park in another way, via vibrations, gesture recognition, and
-		changing LED lights (learn more about the MagicBand+&nbsp;<a
-			href="https://disneyparks.disney.go.com/blog/2022/09/magicband-features-and-experiences-revealed-for-disneyland-resort-coming-this-fall/"
-			target="_blank"
-			rel="nofollow"
-			>here</a
-		>).
-	</p>
-	<p>
-		As part of the Disney100 celebration, those entering with a Magic Key
-		pass or a Park Hopper ticket can enjoy a bit of&nbsp;<a
-			href="https://disneyparks.disney.go.com/blog/2023/01/disneyland-resort-announces-new-updates-to-offer-guests-more-value-and-flexibility/"
-			target="_blank"
-			rel="nofollow"
-			>added flexibility</a
-		>: They'll be able to cross between Disneyland park and Disney
-		California Adventure park at 11:00 a.m., two hours earlier than usual.
-		Another bonus: Disney PhotoPass digital photo downloads captured on any
-		Disney PhotoPass available attraction will be complimentary for all
-		ticketed park guests on the Disneyland app.
-	</p>
-	<p>
-		To make the most of your time, stay at one of the resort’s three on-site
-		hotels, which extend the Disney ambience through themed decor and
-		character breakfasts.
-	</p>
-	<p>
-		Insider tip: The&nbsp;<a
-			href="https://disneyland.disney.go.com/entertainment/disney-california-adventure/world-of-color/"
-			target="_blank"
-			rel="nofollow"
-			><em>World of Color</em></a
-		><em>&nbsp;</em>and the nighttime show&nbsp;<a
-			href="https://disneyland.disney.go.com/entertainment/disneyland/fantasmic/"
-			target="_blank"
-			rel="nofollow"
-			><em>Fantasmic!</em></a
-		> (check the website for the latest show schedules), longtime favorites that
-		had been on hold, have both returned to the Magic Kingdom. If your visit
-		coincides with the fall/winter holiday season, check out&nbsp;<a
-			href="https://www.visitcalifornia.com/experience/holidays-disneyland-resort/"
-			>Holidays at the Disneyland Resort</a
-		>&nbsp;to see all the ways the park gets in the spirit.
-	</p>
-	<p>
-		Reservations and a valid ticket are required for guests ages 3 and older
-		for the same day and same park they want to visit.&nbsp;<a
-			href="https://disneyland.disney.go.com/calendars/five-day/"
-			target="_blank"
-			rel="nofollow"
-			>Click here for schedule and hours of operation</a
-		>.
-	</p>
-	<address>
-		Disneyland Resort address
-		<br /><br />
-		1313 South Harbor Boulevard <br />
-		Anaheim, CA 92803 <br />
-		Phone: 714.781.4636
-	</address>
+<Section id={navItem.label} title="How to Plan Your Visit to Disneyland Resort">
+  <p>
+    Download the free <Link
+      url="https://disneyland.disney.go.com/guest-services/download-disneyland-mobile-app"
+      label="disney-mobile-app">Disneyland Mobile app</Link
+    > to buy tickets, check out wait times, browse maps, and even <Link
+      url="https://disneyland.disney.go.com/guest-services/mobile-food-orders"
+      label="order-food">order food</Link
+    > or locate Disney characters. You’ll also be able to access <Link
+      url="https://disneyland.disney.go.com/genie/?int_cmp=INS-intDLRtoDLR-Genie"
+      label="disney-genie-and-disney-genie+"
+      >Disney Genie and Disney Genie+</Link
+    > services, which can provide tailored recommendations, generate daily itineraries,
+    and help you buy Lightning Lane purchases to reserve ride times. Another high-tech
+    option is the MagicBand+, a next-generation wrist-wearable band that enables
+    visitors to experience the park in another way, via vibrations, gesture recognition,
+    and changing LED lights (learn more about the MagicBand+ <Link
+      url="https://disneyparks.disney.go.com/blog/2022/09/magicband-features-and-experiences-revealed-for-disneyland-resort-coming-this-fall"
+      label="magicband+">here</Link
+    >).
+  </p>
+  <p>
+    As part of the Disney100 celebration, those entering with a Magic Key pass
+    or a Park Hopper ticket can enjoy a bit of <Link
+      url="https://disneyparks.disney.go.com/blog/2023/01/disneyland-resort-announces-new-updates-to-offer-guests-more-value-and-flexibility"
+      label="added-flexibility">added flexibility</Link
+    >: They'll be able to cross between Disneyland park and Disney California
+    Adventure park at 11:00 a.m., two hours earlier than usual. Another bonus:
+    Disney PhotoPass digital photo downloads captured on any Disney PhotoPass
+    available attraction will be complimentary for all ticketed park guests on
+    the Disneyland app.
+  </p>
+  <p>
+    To make the most of your time, stay at one of the resort’s three on-site
+    hotels, which extend the Disney ambience through themed decor and character
+    breakfasts.
+  </p>
+  <p>
+    Insider tip: The <Link
+      url="https://disneyland.disney.go.com/entertainment/disney-california-adventure/world-of-color"
+      label="world-of-color"><em>World of Color</em></Link
+    > and the nighttime show <Link
+      url="https://disneyland.disney.go.com/entertainment/disneyland/fantasmic"
+      label="fantasmic"><em>Fantasmic!</em></Link
+    > (check the website for the latest show schedules), longtime favorites that
+    had been on hold, have both returned to the Magic Kingdom. If your visit coincides
+    with the fall/winter holiday season, check out <Link
+      url="https://www.visitcalifornia.com/experience/holidays-disneyland-resort"
+      label="holidays-at-disneyland-resort"
+      >Holidays at the Disneyland Resort</Link
+    > to see all the ways the park gets in the spirit.
+  </p>
+  <p>
+    Reservations and a valid ticket are required for guests ages 3 and older for
+    the same day and same park they want to visit. <Link
+      url="https://disneyland.disney.go.com/calendars/five-day"
+      label="schedule-and-hours-of-operation"
+      >Click here for schedule and hours of operation</Link
+    >.
+  </p>
+  <address>
+    Disneyland Resort address
+    <br /><br />
+    1313 South Harbor Boulevard <br />
+    Anaheim, CA 92803 <br />
+    Phone: 714.781.4636
+  </address>
 </Section>
