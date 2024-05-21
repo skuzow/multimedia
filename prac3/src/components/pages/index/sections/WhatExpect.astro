@@ -1,5 +1,6 @@
 ---
 import Section from '@/components/common/Section.astro';
+import YoutubeEmbed from '@/components/common/YoutubeEmbed.astro';
 
 import { type NavItem } from '@/constants/navItems';
 
@@ -35,4 +36,10 @@ const { navItem } = Astro.props;
     taking place at Disneyland Resort in the coming year so you can plan your
     trip accordingly, see this 2024 calendar.
   </p>
+  <YoutubeEmbed
+    videoId="gTDTiAjIv_E"
+    playLabel="Play: Disneyland Resort Destination Promotional Video (2020)"
+    title="Disneyland Resort Destination Promotional Video (2020)"
+    class="mx-auto"
+  />
 </Section>

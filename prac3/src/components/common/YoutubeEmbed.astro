@@ -1,0 +1,18 @@
+---
+interface Props {
+  videoId: string;
+  playLabel: string;
+  title: string;
+  class: string;
+}
+
+const { videoId, playLabel, title, class: className } = Astro.props;
+---
+
+<lite-youtube
+  videoid={videoId}
+  playlabel={playLabel}
+  title={title}
+  class={className}
+>
+</lite-youtube>
