@@ -1,0 +1,79 @@
+---
+import Section from '@/components/common/Section.astro';
+
+import { type NavItem } from '@/constants/navItems';
+import { PHOTOS } from '@/constants/travelerPhotos';
+
+interface Props {
+  navItem: NavItem;
+}
+
+const { navItem } = Astro.props;
+---
+
+<script>
+  const alert = document.getElementById('alert') as HTMLElement;
+  const form = document.getElementById('photo-upload-form') as HTMLFormElement;
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    alert.style.display = 'block';
+
+    form.reset();
+
+    // Hide the alert after 5 seconds
+    setTimeout(() => (alert.style.display = 'none'), 5000);
+  });
+</script>
+
+<Section id={navItem.label} title="Traveler Photos">
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    {
+      PHOTOS.map(({ title, imageUrl }) => (
+        <img
+          width="200"
+          height="200"
+          src={`${imageUrl}`}
+          alt={title}
+          class="h-52 w-52 rounded-2xl object-cover"
+        />
+      ))
+    }
+  </div>
+  <div class="form-container mt-5 grid justify-items-center">
+    <div id="upload-form" class="form-container mt-5 grid justify-items-center">
+      <form id="photo-upload-form" method="post" enctype="multipart/form-data">
+        <div>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            required
+          />
+          <button class="btn" type="submit">Upload</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    id="alert"
+    role="alert"
+    class="alert alert-success my-2"
+    style="display: none"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 shrink-0 stroke-current"
+      fill="none"
+      viewBox="0 0 24 24"
+      ><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+    >
+    <span>Your photo has been uploaded!</span>
+  </div>
+</Section>

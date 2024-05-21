@@ -1,0 +1,57 @@
+---
+import Section from '@/components/common/Section.astro';
+
+import { type NavItem } from '@/constants/navItems';
+
+interface Props {
+  navItem: NavItem;
+}
+
+const { navItem } = Astro.props;
+---
+
+<Section id={navItem.label} title="How to Plan Your Visit to Disneyland Resort">
+  <p>
+    Download the free Disneyland Mobile app to buy tickets, check out wait
+    times, browse maps, and even order food or locate Disney characters. You’ll
+    also be able to access Disney Genie and Disney Genie+ services, which can
+    provide tailored recommendations, generate daily itineraries, and help you
+    buy Lightning Lane purchases to reserve ride times. Another high-tech option
+    is the MagicBand+, a next-generation wrist-wearable band that enables
+    visitors to experience the park in another way, via vibrations, gesture
+    recognition, and changing LED lights (learn more about the MagicBand+ here).
+  </p>
+  <p>
+    As part of the Disney100 celebration, those entering with a Magic Key pass
+    or a Park Hopper ticket can enjoy a bit of added flexibility: They'll be
+    able to cross between Disneyland park and Disney California Adventure park
+    at 11:00 a.m., two hours earlier than usual. Another bonus: Disney PhotoPass
+    digital photo downloads captured on any Disney PhotoPass available
+    attraction will be complimentary for all ticketed park guests on the
+    Disneyland app.
+  </p>
+  <p>
+    To make the most of your time, stay at one of the resort’s three on-site
+    hotels, which extend the Disney ambience through themed decor and character
+    breakfasts.
+  </p>
+  <p>
+    Insider tip: The World of Color and the nighttime show Fantasmic! (check the
+    website for the latest show schedules), longtime favorites that had been on
+    hold, have both returned to the Magic Kingdom. If your visit coincides with
+    the fall/winter holiday season, check out Holidays at the Disneyland Resort
+    to see all the ways the park gets in the spirit.
+  </p>
+  <p>
+    Reservations and a valid ticket are required for guests ages 3 and older for
+    the same day and same park they want to visit. Click here for schedule and
+    hours of operation.
+  </p>
+  <address>
+    Disneyland Resort address
+    <br /><br />
+    1313 South Harbor Boulevard <br />
+    Anaheim, CA 92803 <br />
+    Phone: 714.781.4636
+  </address>
+</Section>
