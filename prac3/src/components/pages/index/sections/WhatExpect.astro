@@ -1,0 +1,38 @@
+---
+import Section from '@/components/common/Section.astro';
+
+import { type NavItem } from '@/constants/navItems';
+
+interface Props {
+  navItem: NavItem;
+}
+
+const { navItem } = Astro.props;
+---
+
+<Section id={navItem.label} title="What to Expect at Disneyland Resort">
+  <p>
+    Consisting of the original Disneyland Park and the adjacent Disney
+    California Adventure Park, the sprawling Disneyland Resort is divided up
+    into themed “lands” with related rides, shows, and attractions. Rising
+    beyond Main Street, Sleeping Beauty Castle is the unmistakable beacon at the
+    heart of the theme park, with its turquoise-tiled towers, golden turrets,
+    and working drawbridge. You’ll find an abode of an entirely different sort
+    in the Adventureland Treehouse, which is inspired by Walt Disney’s Swiss
+    Family Robinson. The treehouse is bigger and more impressive than ever after
+    an extensive reimagining of the 1962 original.
+  </p>
+  <p>
+    Visitors to the park in 2024 are in for a special experience to mark a
+    milestone. Though the park opened in 1955, Walk Disney and his brother, Roy,
+    launched the Disney Brothers Cartoon Studio in 1923. Beginning Jan. 27 and
+    throughout 2023, the park’s Disney100 Celebration will mark the company’s
+    centennial with special decor, food and drink, merchandise, and new rides
+    and shows.
+  </p>
+  <p>
+    If you’d like to see all the goings-on and special events that will be
+    taking place at Disneyland Resort in the coming year so you can plan your
+    trip accordingly, see this 2024 calendar.
+  </p>
+</Section>
