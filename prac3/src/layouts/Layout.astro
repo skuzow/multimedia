@@ -43,10 +43,10 @@ const { title, description } = Astro.props;
         const section = document.getElementById(id);
 
         if (section instanceof HTMLElement) {
+          const topGap = document.querySelector('header')!.offsetHeight + 20;
+
           window.scrollTo({
-            top:
-              section.offsetTop -
-              document.querySelector('header')!.offsetHeight,
+            top: section.offsetTop - topGap,
             behavior: 'smooth'
           });
         }

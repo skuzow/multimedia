@@ -6,6 +6,53 @@ import MoonIcon from '@/components/icons/MoonIcon.astro';
 import { NAVITEMS } from '@/constants/navItems';
 ---
 
+<script>
+  const MD_BREAKPOINT: number = 768;
+
+  function getReversePrefersColorScheme(): string {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDark ? 'light' : 'dark';
+  }
+
+  function handleResize() {
+    const isDesktop = window.innerWidth >= MD_BREAKPOINT;
+
+    if (isDesktop) {
+      fullMenu!.style.display = 'flex';
+      hamburgerMenu!.style.display = 'none';
+    } else {
+      fullMenu!.style.display = 'none';
+      hamburgerMenu!.style.display = 'flex';
+    }
+  }
+
+  const colorScheme = getReversePrefersColorScheme();
+  const themeController: HTMLInputElement | null =
+    document.querySelector('.theme-controller');
+
+  themeController!.value = colorScheme;
+
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
+
+  if (colorScheme === 'light') {
+    sunIcon!.classList.add('swap-off');
+    moonIcon!.classList.add('swap-on');
+  } else {
+    sunIcon!.classList.add('swap-on');
+    moonIcon!.classList.add('swap-off');
+  }
+
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle!.style.display = 'flex';
+
+  const hamburgerMenu = document.getElementById('mobileMenu');
+  const fullMenu = document.getElementById('desktopMenu');
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('load', handleResize);
+</script>
+
 <header
   transition:persist
   class="fixed z-10 flex w-full justify-center md:pt-2"
@@ -70,48 +117,4 @@ import { NAVITEMS } from '@/constants/navItems';
       </ul>
     </div>
   </nav>
-
-  <script>
-    function getReversePrefersColorScheme(): string {
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      return isDark ? 'light' : 'dark';
-    }
-
-    function handleResize() {
-      // md breakpoint
-      if (window.innerWidth >= 768) {
-        fullMenu!.style.display = 'flex';
-        hamburgerMenu!.style.display = 'none';
-      } else {
-        fullMenu!.style.display = 'none';
-        hamburgerMenu!.style.display = 'flex';
-      }
-    }
-
-    const colorScheme = getReversePrefersColorScheme();
-    const themeController: HTMLInputElement | null =
-      document.querySelector('.theme-controller');
-
-    themeController!.value = colorScheme;
-
-    const sunIcon = document.getElementById('sunIcon');
-    const moonIcon = document.getElementById('moonIcon');
-
-    if (colorScheme === 'light') {
-      sunIcon!.classList.add('swap-off');
-      moonIcon!.classList.add('swap-on');
-    } else {
-      sunIcon!.classList.add('swap-on');
-      moonIcon!.classList.add('swap-off');
-    }
-
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle!.style.display = 'flex';
-
-    const hamburgerMenu = document.getElementById('mobileMenu');
-    const fullMenu = document.getElementById('desktopMenu');
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('load', handleResize);
-  </script>
 </header>
