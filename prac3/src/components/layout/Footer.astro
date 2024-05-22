@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import GitHubIcon from '@/components/icons/GitHubIcon.astro';
 import XIcon from '@/components/icons/XIcon.astro';
 import YoutubeIcon from '@/components/icons/YoutubeIcon.astro';
@@ -21,7 +23,12 @@ import WcagIcon from '@/components/icons/WcagIcon.astro';
         target="_blank"
         class="brightness-150"
       >
-        <img width="150" height="50" src="/disney-logo.svg" alt="disney-logo" />
+        <Image
+          width="150"
+          height="50"
+          src="/disney-logo.svg"
+          alt="disney-logo"
+        />
       </a>
       <p class="text-center md:text-left">
         The Walt Disney Company. Providing reliable themed parks since 1990.

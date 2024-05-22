@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import HamburguerMenuIcon from '@/components/icons/HamburguerMenuIcon.astro';
 import InvisibleCharacter from '@/components/common/InvisibleCharacter.astro';
 import SunIcon from '@/components/icons/SunIcon.astro';
@@ -63,7 +65,7 @@ import { NAV_ITEMS } from '@/constants/navItems';
   >
     <div class="ml-4 flex-1">
       <a href="/#" aria-label="home" class="smooth-scroll">
-        <img
+        <Image
           width="145"
           height="50"
           src="/disneyland-california-logo.svg"

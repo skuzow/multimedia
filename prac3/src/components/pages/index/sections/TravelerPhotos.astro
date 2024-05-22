@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import Section from '@/components/common/Section.astro';
 import Modal from '@/components/common/Modal.astro';
 import SuccessAlert from '@/components/common/SuccessAlert.astro';
@@ -40,7 +42,7 @@ const { navItem } = Astro.props;
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
       {
         PHOTOS.map(({ title, imageUrl }) => (
-          <img
+          <Image
             width="200"
             height="200"
             src={`${imageUrl}`}
