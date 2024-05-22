@@ -1,0 +1,25 @@
+---
+import CheckIcon from '@/components/icons/CheckIcon.astro';
+
+interface Props {
+  id: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<div
+  id={id}
+  role="alert"
+  class:list={[
+    'alert alert-success',
+    'fixed left-1/2 top-0 z-10 mt-20 flex max-w-xs -translate-x-1/2 justify-center',
+    className
+  ]}
+>
+  <CheckIcon />
+  <span>
+    <slot />
+  </span>
+</div>

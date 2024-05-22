@@ -1,5 +1,7 @@
 ---
 import Section from '@/components/common/Section.astro';
+import Modal from '@/components/common/Modal.astro';
+import SuccessAlert from '@/components/common/SuccessAlert.astro';
 
 import { type NavItem } from '@/constants/navItems';
 import { PHOTOS } from '@/constants/travelerPhotos';
@@ -12,71 +14,78 @@ const { navItem } = Astro.props;
 ---
 
 <script>
-  const alert = document.getElementById('alert') as HTMLElement;
+  function hideAlertAfter(seconds: number) {
+    setTimeout(() => (alert.style.display = 'none'), seconds * 1000);
+  }
+
+  const modal = document.getElementById(
+    'photo_upload_modal'
+  ) as HTMLDialogElement;
   const form = document.getElementById('photo-upload-form') as HTMLFormElement;
+  const alert = document.getElementById('photo-upload-alert') as HTMLElement;
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    alert.style.display = 'block';
-
+    modal.close();
+    alert.style.display = 'flex';
     form.reset();
 
-    // Hide the alert after 5 seconds
-    setTimeout(() => (alert.style.display = 'none'), 5000);
+    hideAlertAfter(5);
   });
 </script>
 
 <Section id={navItem.label} title="Traveler Photos">
-  <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-    {
-      PHOTOS.map(({ title, imageUrl }) => (
-        <img
-          width="200"
-          height="200"
-          src={`${imageUrl}`}
-          alt={title}
-          class="h-52 w-52 rounded-2xl object-cover"
-        />
-      ))
-    }
-  </div>
-  <div class="form-container mt-5 grid justify-items-center">
-    <div id="upload-form" class="form-container mt-5 grid justify-items-center">
-      <form id="photo-upload-form" method="post" enctype="multipart/form-data">
-        <div>
-          <input
-            type="file"
-            id="photo"
-            name="photo"
-            accept="image/*"
-            required
-            aria-label="Select photo to upload"
+  <div class="flex justify-center">
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {
+        PHOTOS.map(({ title, imageUrl }) => (
+          <img
+            width="200"
+            height="200"
+            src={`${imageUrl}`}
+            alt={title}
+            class="h-52 w-52 rounded-2xl object-cover"
           />
-          <button class="btn" type="submit" aria-label="Upload photo">
-            Upload
-          </button>
-        </div>
-      </form>
+        ))
+      }
     </div>
   </div>
-  <div
-    id="alert"
-    role="alert"
-    class="alert alert-success my-2"
-    style="display: none"
+
+  <button onclick="photo_upload_modal.showModal()" class="btn mx-auto flex">
+    Upload Photo
+  </button>
+  <Modal
+    id="photo_upload_modal"
+    title="Upload Photo"
+    description="Upload the image you want to publish to traveler photos"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6 shrink-0 stroke-current"
-      fill="none"
-      viewBox="0 0 24 24"
-      ><path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+    <form
+      id="photo-upload-form"
+      method="post"
+      enctype="multipart/form-data"
+      class="flex flex-col"
     >
-    <span>Your photo has been uploaded!</span>
-  </div>
+      <input
+        required
+        type="text"
+        placeholder="Photo Title"
+        aria-label="Write a photo title"
+        class="input input-bordered mb-5"
+      />
+      <input
+        required
+        type="file"
+        accept="image/*"
+        aria-label="Select photo to upload"
+        class="file-input file-input-bordered mb-5"
+      />
+      <button type="submit" aria-label="Upload photo" class="btn">
+        Upload
+      </button>
+    </form>
+  </Modal>
+  <SuccessAlert id="photo-upload-alert" class="hidden">
+    Your photo has been uploaded!
+  </SuccessAlert>
 </Section>
