@@ -1,18 +1,20 @@
 ---
+import { YouTube } from 'astro-embed';
+
 interface Props {
-  videoId: string;
-  playLabel: string;
+  url: string;
   title: string;
+  playLabel: string;
   class: string;
 }
 
-const { videoId, playLabel, title, class: className } = Astro.props;
+const { url, playLabel, title, class: className } = Astro.props;
 ---
 
-<lite-youtube
-  videoid={videoId}
-  playlabel={playLabel}
+<YouTube
+  id={url}
   title={title}
+  playlabel={playLabel}
+  posterQuality="max"
   class={className}
->
-</lite-youtube>
+/>
