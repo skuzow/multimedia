@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 
 import Section from '@/components/common/Section.astro';
+import Link from '@/components/common/Link.astro';
 import Modal from '@/components/common/Modal.astro';
 import SuccessAlert from '@/components/common/SuccessAlert.astro';
 
@@ -38,7 +39,24 @@ const { navItem } = Astro.props;
 </script>
 
 <Section id={navItem.label} title="Traveler Photos">
-  <div class="flex justify-center">
+  <p>
+    For many, a trip to <Link
+      url="https://disneyland.disney.go.com"
+      label="disneyland-resort">Disneyland Resort</Link
+    > in California is a dream come true. This magical destination, home to iconic
+    attractions, beloved characters, and enchanting experiences, offers countless
+    opportunities to capture unforgettable moments. From the excitement of meeting
+    <Link
+      url="https://disneyland.disney.go.com/characters/mickey-mouse"
+      label="mickey-mouse">Mickey Mouse</Link
+    > for the first time to the thrill of riding the <Link
+      url="https://disneyland.disney.go.com/attractions/disneyland/matterhorn-bobsleds"
+      label="matterhorn-bobsleds">Matterhorn Bobsleds</Link
+    >, every corner of Disneyland Resort is brimming with photo-worthy scenes.
+  </p>
+
+  <div class="flex
+      justify-center">
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
       {
         PHOTOS.map(({ title, imageUrl }) => (
@@ -54,7 +72,22 @@ const { navItem } = Astro.props;
     </div>
   </div>
 
-  <button onclick="photo_upload_modal.showModal()" class="btn mx-auto flex">
+  <p>
+    We invite you to browse through the vibrant gallery of traveler photos
+    above. Each image tells a story of adventure, wonder, and the timeless joy
+    that Disneyland Resort brings to people of all ages. And if you have a
+    favorite photo from your own visit, we'd love for you to share it with our
+    community. Just click the <button
+      onclick="photo_upload_modal.showModal()"
+      class="underline">here</button
+    > or the upload button below, and your photo could be featured in our gallery,
+    spreading the magic of Disneyland to fellow fans around the world.
+  </p>
+
+  <button
+    onclick="photo_upload_modal.showModal()"
+    class="btn mx-auto flex px-7"
+  >
     Upload Photo
   </button>
   <Modal
