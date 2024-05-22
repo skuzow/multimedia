@@ -1,11 +1,11 @@
 ---
 interface Props {
-  size?: string;
   id?: string;
+  size?: string;
   class?: string;
 }
 
-const { size = 20, id, class: className } = Astro.props;
+const { id, size = 20, class: className } = Astro.props;
 ---
 
 <svg
