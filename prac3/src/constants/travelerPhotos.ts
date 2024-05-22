@@ -5,35 +5,35 @@ export interface Photo {
 
 export const PHOTOS: Photo[] = [
   {
-    title: 'Beautiful view',
+    title: 'Having fun',
     imageUrl: '/traveler-photos/pic-1.webp'
   },
   {
-    title: 'Having fun',
+    title: 'Cool hotel inside the resort',
     imageUrl: '/traveler-photos/pic-2.webp'
-  },
-  {
-    title: 'With goofy and friends',
-    imageUrl: '/traveler-photos/pic-3.webp'
   },
   {
     title: 'Beautiful view',
-    imageUrl: '/traveler-photos/pic-1.webp'
-  },
-  {
-    title: 'Having fun',
-    imageUrl: '/traveler-photos/pic-2.webp'
-  },
-  {
-    title: 'With goofy and friends',
     imageUrl: '/traveler-photos/pic-3.webp'
   },
   {
-    title: 'Having fun',
-    imageUrl: '/traveler-photos/pic-2.webp'
+    title: 'Enjoying with family',
+    imageUrl: '/traveler-photos/pic-4.webp'
+  },
+  {
+    title: 'Welcoming Mickey and Minnie',
+    imageUrl: '/traveler-photos/pic-5.webp'
   },
   {
     title: 'With goofy and friends',
-    imageUrl: '/traveler-photos/pic-3.webp'
+    imageUrl: '/traveler-photos/pic-6.webp'
+  },
+  {
+    title: 'Spectacular fireworks show',
+    imageUrl: '/traveler-photos/pic-7.webp'
+  },
+  {
+    title: 'Roller coaster ride',
+    imageUrl: '/traveler-photos/pic-8.webp'
   }
 ];

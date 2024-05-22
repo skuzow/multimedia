@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import Section from '@/components/common/Section.astro';
 import Link from '@/components/common/Link.astro';
 
@@ -54,4 +56,12 @@ const { navItem } = Astro.props;
     you’ll follow Simba’s journey by way of narration, choreography, and song as
     he ascends to the throne.
   </p>
+
+  <Image
+    width="720"
+    height="720"
+    src="/disneyland-california-ride.webp"
+    alt="disneyland-california-ride"
+    class="mx-auto rounded-2xl object-cover"
+  />
 </Section>
